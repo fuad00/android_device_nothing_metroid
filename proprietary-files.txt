@@ -2094,14 +2094,6 @@ vendor/firmware/matrix_leds_ltn_fw.bin
 vendor/firmware/matrix_leds_rfd_fw.bin
 vendor/firmware/stereo.cnt
 vendor/firmware/tfa98xx.cnt
-vendor/firmware/wlan/qca_cld/kiwi_v2/WCNSS_qcom_cfg.ini
-vendor/firmware/wlan/qca_cld/kiwi_v2/wlan_mac.bin
-vendor/firmware/wlan/qca_cld/peach/WCNSS_qcom_cfg.ini
-vendor/firmware/wlan/qca_cld/peach/wlan_mac.bin
-vendor/firmware/wlan/qca_cld/peach_v2/WCNSS_qcom_cfg.ini
-vendor/firmware/wlan/qca_cld/peach_v2/wlan_mac.bin
-vendor/firmware/wlan/qca_cld/qca6750/WCNSS_qcom_cfg.ini
-vendor/firmware/wlan/qca_cld/qca6750/wlan_mac.bin
 
 # Media (tuna)
 vendor/etc/media_tuna_v0/video_system_specs.json

@@ -43,7 +43,7 @@ for title,paths in sections:
     items=[]
     for p in paths:
         for f in walk(p):
-            if f in kept or skip.search(f): continue
+            if f in kept or skip.search(f) or os.path.islink(os.path.join(D,f)): continue
             items.append(f); kept.add(f)
     if items:
         out+=['',f'# {title}']+items; added+=items
