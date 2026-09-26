@@ -2892,7 +2892,6 @@ vendor/lib64/libchifeature2.so
 vendor/lib64/libchilog.so
 vendor/lib64/libchinodeevautils.so
 vendor/lib64/libchinodehmeutils.so
-vendor/lib64/libcld80211.so
 vendor/lib64/libclstc_algorithm_adapter.so
 vendor/lib64/libclstc_gcp_adapter.so
 vendor/lib64/libclstc_tm.so
@@ -3424,8 +3423,6 @@ vendor/lib64/libwfduibcsinkinterface_vendor.so
 vendor/lib64/libwfduibcsrc_vendor.so
 vendor/lib64/libwfduibcsrcinterface_vendor.so
 vendor/lib64/libwfdutils_proprietary.so
-vendor/lib64/libwifi-hal-ctrl.so
-vendor/lib64/libwifi-hal-qcom.so
 vendor/lib64/libwifi-hal.so
 vendor/lib64/libwifiobserver.so
 vendor/lib64/libwms.so

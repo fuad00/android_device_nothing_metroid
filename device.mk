@@ -218,7 +218,8 @@ PRODUCT_PACKAGES +=     vndservicemanager
 # WiFi supplicant (external/wpa_supplicant_8). The wifi HAL service is the STOCK blob
 # (proprietary_force_copy.mk): the AOSP generic android.hardware.wifi-service has no vendor
 # impl here ("failed to open /vendor/etc/wifi/vendor_hals") -> IWifi start fails code 9.
-# Stock service + libwifi-hal{,-qcom,-ctrl} + wcn7750 WCNSS_qcom_cfg.ini (icnss2 probe needs
+# Stock service + libwifi-hal (libwifi-hal-qcom/-ctrl and libcld80211 are built from
+# hardware/qcom-caf/wlan, see proprietary-files.txt) + wcn7750 WCNSS_qcom_cfg.ini (icnss2 probe needs
 # it or wlan0 never appears). Verified live on device 2026-07-09 (enable + multi-band scan).
 # libxml2.vendor: was only installed as a dep of the removed AOSP wifi-service; qseecomd
 # (libdrmfs.so) hard-requires it -> without it TEE dies -> keymint -> gatekeeper -> system_server
