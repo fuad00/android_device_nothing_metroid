@@ -3009,7 +3009,6 @@ vendor/lib64/libbatching.so
 vendor/lib64/libbatterylistener.so
 vendor/lib64/libbcinfo.so
 vendor/lib64/libbinder.so
-vendor/lib64/libbinderdebug.so
 vendor/lib64/libbitmlengine.so
 vendor/lib64/libbitmlenginev2.so
 vendor/lib64/libblas.so
@@ -3473,7 +3472,6 @@ vendor/lib64/libqti-scenariod.so
 vendor/lib64/libqti-sslite.so
 vendor/lib64/libqti-util.so
 vendor/lib64/libqti-utils.so
-vendor/lib64/libqti_vndfwk_detect.so
 vendor/lib64/libqti_vndfwk_detect_vendor.so
 vendor/lib64/libqtigefar.so
 vendor/lib64/libqtiidentitycredential.so
@@ -3627,7 +3625,6 @@ vendor/lib64/libvideotxr.so
 vendor/lib64/libvideoutils.so
 vendor/lib64/libvmfilexfer.so
 vendor/lib64/libvmmem.so
-vendor/lib64/libvndfwk_detect_jni.qti.so
 vendor/lib64/libvndfwk_detect_jni.qti_vendor.so
 vendor/lib64/libvppclient.so
 vendor/lib64/libvppcommon.so
