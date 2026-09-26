@@ -1,0 +1,86 @@
+# Audio
+/dev/socket/audio_agm_socket_0 u:object_r:audio_socket:s0
+/dev/socket/audio_holder_socket_0 u:object_r:audio_socket:s0
+/dev/socket/audio_us_socket_0 u:object_r:audio_socket:s0
+/dev/socket/audio_us_socket_1 u:object_r:audio_socket:s0
+
+# Block devices
+/dev/block/by-name/charger u:object_r:vendor_charge_block_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/vbmeta_vendor_[ab] u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/countrycode_[ab] u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/idmanager_[ab]      u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/modemfirmware_[ab] u:object_r:vendor_modem_block_device:s0
+
+# Camera
+
+# Match Nothing's stock policy so the HAL inherits the standard face-data,
+# camera, graphics, logging and property grants.
+/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.face-service\.noth    u:object_r:hal_face_default_exec:s0
+
+# Diag
+/data/vendor/diag(/.*)? u:object_r:minidump_data_file:s0
+/data/vendor/diag_mdlog(/.*)? u:object_r:vendor_mdlog_vendor_data_file:s0
+/(vendor|system/vendor)/bin/diagcommd u:object_r:vendor_diagcommd_exec:s0
+
+# Fingerprint
+/data/vendor/fpc(/.*)? u:object_r:fingerprint_vendor_data_file:s0
+/data/vendor/fpdata(/.*)? u:object_r:fingerprint_vendor_data_file:s0
+/data/vendor/fpdump(/.*)? u:object_r:fingerprint_vendor_data_file:s0
+/data/vendor/goodix(/.*)? u:object_r:fingerprint_vendor_data_file:s0
+/dev/goodix_fp u:object_r:vendor_fingerprint_device:s0
+/dev/nothing-fp u:object_r:vendor_fingerprint_device:s0
+/mnt/vendor/persist/fingerprint(/.*)? u:object_r:fingerprint_vendor_data_file:s0
+/mnt/vendor/persist/goodix(/.*)? u:object_r:fingerprint_vendor_data_file:s0
+/(vendor|system/vendor)/bin/hw/vendor\.nothing\.hardware\.biometrics\.fingerprint-service u:object_r:hal_fingerprint_default_exec:s0
+
+# GNSS
+/(odm|vendor|vendor/odm|system/vendor/odm)/bin/hw/android\.hardware\.gnss.*-service-qti u:object_r:vendor_hal_gnss_qti_exec:s0
+
+# Haptics
+/dev/aw86927_haptic u:object_r:vendor_metroid_haptic_device:s0
+/dev/ics_sfdc u:object_r:vendor_metroid_haptic_device:s0
+
+# QRTR
+/(vendor|system/vendor)/bin/qrtr-lookup u:object_r:vendor_qrtr_exec:s0
+
+# Sensors
+/vendor/bin/hw/android\.hardware\.sensors-service\.multihal u:object_r:hal_sensors_default_exec:s0
+
+# Thermal
+/data/vendor/thermal(/.*)? u:object_r:thermal_data_file:s0
+/sys/devices/virtual/virtual_temp/shell/data u:object_r:vendor_sysfs_virtual_temp:s0
+/sys/class/thermal/thermal_message/wifi_limit u:object_r:sys_thermal_wifi_limit:s0
+/sys/devices/virtual/thermal/thermal_message/wifi_limit u:object_r:sys_thermal_wifi_limit:s0
+/sys/powersave(/.*)? u:object_r:sysfs_power_save:s0
+
+# Charging policy
+/(vendor|system/vendor)/bin/hw/vendor\.noth\.hardware\.charge-service u:object_r:vendor_hal_charge_default_exec:s0
+
+# WLAN
+/data/vendor/mac_addr(/.*)? u:object_r:vendor_mac_vendor_data_file:s0
+/data/vendor/mbnconfig(/.*)? u:object_r:vendor_firmware_data_file:s0
+
+# Persistent logging
+
+# Nothing's camera HAL shim had no label, so it inherited vendor_file and init exec'd it WITHOUT a
+# domain transition -- it ran as u:r:init:s0. Every binder call it made was then attributed to init,
+# which is where the ~630 "init -> servicemanager/cameraserver : binder" and
+# "init -> vendor_file : file : execute{,_no_trans}" denials came from. It is an ordinary camera
+# provider, so give it the standard AOSP camera HAL domain.
+/(vendor|system/vendor)/bin/hw/vendor\.noth\.hardware\.camera-service    u:object_r:hal_camera_default_exec:s0
+
+# HAL/vendor binaries that shipped with NO SELinux label (2026-07-29).
+#
+# Unlabeled binaries inherit vendor_file, and under ENFORCING init refuses to exec them:
+#   "Could not start service 'vendor.power.stats-default' as part of class 'hal': File
+#    /vendor/bin/hw/android.hardware.power.stats-service (labeled "u:object_r:vendor_file:s0")
+#    has incorrect label or no domain transition from u:r:init:s0"
+# Under permissive they silently ran as u:r:init:s0, so nothing looked wrong.
+#
+# power.stats is the one that actually blocked boot: with no IPowerStats, system_server retried
+# it as a lazy AIDL service forever and crash-looped (sys.system_server.crash=1), so
+# sys.boot_completed was never set. AOSP labels this domain already — it just does not match
+# Nothing's binary name (AOSP expects *-service.example / @1.0-service).
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power\.stats-service    u:object_r:hal_power_stats_default_exec:s0
+/(vendor|system/vendor)/bin/ft_diag_test    u:object_r:vendor_ft_diag_test_exec:s0
+/(vendor|system/vendor)/bin/st_getcplc      u:object_r:hal_nfc_default_exec:s0

@@ -1,0 +1,31 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.euicc.partner"
+    android:versionCode="50"
+    android:versionName="50">
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+
+    <application
+        android:allowBackup="false"
+        android:hasCode="true"
+        android:label="@string/app_name">
+        <activity
+            android:name="com.android.euicc.partner.SimModeActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Material.Light.Dialog.Alert">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver
+            android:name="com.android.euicc.partner.PartnerReceiver"
+            android:directBootAware="true"
+            android:exported="true"
+            android:permission="android.permission.WRITE_EMBEDDED_SUBSCRIPTIONS">
+            <intent-filter>
+                <action android:name="com.google.android.euicc.action.PARTNER_CUSTOMIZATION" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

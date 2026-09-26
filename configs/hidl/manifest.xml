@@ -1,0 +1,52 @@
+<manifest version="8.0" type="device" target-level="202404">
+    <hal format="aidl">
+        <name>android.hardware.gatekeeper</name>
+        <fqname>IGatekeeper/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.wifi.hostapd</name>
+        <version>2</version>
+        <fqname>IHostapd/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.biometrics.face</name>
+        <version>4</version>
+        <fqname>IFace/default</fqname>
+    </hal>
+    <!-- KeyMint (TEE) + RKP/secureclock/sharedsecret. keystore2 discovers keymint backends
+         via VINTF; without these it aborts constructing the mandatory TEE level -> InitFatalReboot.
+         Versions verbatim from stock svf/etc/vintf/manifest/android.hardware.security.keymint-service-qti.xml -->
+    <hal format="aidl">
+        <name>android.hardware.security.keymint</name>
+        <version>3</version>
+        <fqname>IKeyMintDevice/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.security.keymint</name>
+        <version>3</version>
+        <fqname>IRemotelyProvisionedComponent/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.security.secureclock</name>
+        <fqname>ISecureClock/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.security.sharedsecret</name>
+        <fqname>ISharedSecret/default</fqname>
+    </hal>
+    <!-- QTEE transport HALs the keymint/gatekeeper stack registers. Missing decl ->
+         qseecom-service + minkipcbinder SIGABRT on registerAsService. -->
+    <hal format="aidl">
+        <name>vendor.qti.hardware.qseecom</name>
+        <fqname>IQSEECom/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.qti.hardware.minkipcbinder</name>
+        <fqname>IMinkServer/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.qti.memory.pasrmanager</name>
+        <version>1</version>
+        <fqname>IPasrManager/default</fqname>
+    </hal>
+</manifest>

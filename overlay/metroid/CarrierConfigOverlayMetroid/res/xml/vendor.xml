@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<carrier_config_list>
+    <carrier_config mcc="310">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="311">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="312">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="313">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="314">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="315">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="316">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="310" mnc="280">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_vt_available_bool" value="false" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
+        <boolean name="carrier_volte_tty_supported_bool" value="false" />
+        <boolean name="require_apn_filtering_with_radio_capability_bool" value="true" />
+        <boolean name="editable_enhanced_4g_lte_bool" value="false" />
+    </carrier_config>
+    <carrier_config cid="2575">
+        <string name="default_preferred_apn_name_string">ereseller</string>
+    </carrier_config>
+    <carrier_config cid="1696">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <string name="nt_carrier_ims_user_agent_string">Tele2 VOLTE</string>
+    </carrier_config>
+    <carrier_config mcc="310" mnc="410">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_vt_available_bool" value="false" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
+        <boolean name="carrier_volte_tty_supported_bool" value="false" />
+        <boolean name="carrier_allow_turnoff_ims_bool" value="false" />
+        <boolean name="require_apn_filtering_with_radio_capability_bool" value="true" />
+        <boolean name="editable_enhanced_4g_lte_bool" value="false" />
+    </carrier_config>
+</carrier_config_list>

@@ -1,0 +1,54 @@
+# Camera
+persist.vendor.EnableP3ColorSpace u:object_r:vendor_camera_p3enable_prop:s0
+persist.vendor.XDRVersion u:object_r:vendor_camera_xdrversion_prop:s0
+persist.vendor.cameraid.totalnum u:object_r:vendor_camera_prop:s0
+vendor.camera.sensor. u:object_r:vendor_camera_sensor_prop:s0
+
+# Fingerprint
+persist.vendor.fpc. u:object_r:vendor_fp_prop:s0
+persist.vendor.goodix. u:object_r:vendor_fp_prop:s0
+persist.vendor.sys.fp. u:object_r:vendor_fp_prop:s0
+ro.hardware.fp. u:object_r:vendor_fp_prop:s0
+vendor.dtool. u:object_r:vendor_fp_prop:s0
+vendor.fps_hal. u:object_r:vendor_fp_prop:s0
+vendor.panel.display. u:object_r:vendor_fp_prop:s0
+
+# Bluetooth
+persist.vendor.bt.a2dp_offload_cap u:object_r:vendor_bluetooth_prop:s0
+
+# RIL OEM
+persist.vendor.radio.imei u:object_r:vendor_deviceid_prop:s0
+persist.vendor.radio.meid u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.boot_completed u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.ctacode u:object_r:vendor_sno_prop:s0
+ro.vendor.oem.imei u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.meid u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.psno u:object_r:vendor_sno_prop:s0
+ro.vendor.oem.serialno u:object_r:vendor_deviceid_prop:s0
+ro.vendor.oem.sno u:object_r:vendor_sno_prop:s0
+
+# Thermal
+vendor.sys.thermal.bcl.boot_completed u:object_r:vendor_thermal_normal_prop:s0
+vendor.sys.thermal.data.path u:object_r:vendor_thermal_normal_prop:s0
+
+# Fingerprint HAL (goodix) — set at runtime by hal_fingerprint_default.
+# Only the persist.vendor.* names can live here: vendor property_contexts may label ONLY
+# vendor-prefixed properties (check_prop_prefix, enforced by VTS). gf.debug.fp_serial and
+# system.face.* are not vendor-namespaced and are handled with dontaudit in enforcing.te.
+persist.vendor.overlay.fp_model u:object_r:vendor_fingerprint_prop:s0
+persist.vendor.overlay.fp_vendor u:object_r:vendor_fingerprint_prop:s0
+
+# Haptics
+persist.vendor.sfdc u:object_r:vendor_metroid_sfdc_prop:s0
+vendor.haptic.calibrate.done u:object_r:vendor_metroid_haptic_calibration_prop:s0
+
+# NFC clean-state CPLC bootstrap
+persist.vendor.st_nfc_felica_ese u:object_r:vendor_nfc_prop:s0
+persist.vendor.st_nfc_felica_fsi u:object_r:vendor_nfc_prop:s0
+persist.vendor.nfc_cfg.mode_name u:object_r:vendor_nfc_prop:s0
+persist.vendor.nfc_getcplc_completed u:object_r:vendor_nfc_prop:s0
+
+# Face HAL (Nothing), matching the stock vendor policy prefixes.
+persist.vendor.debug.face_aidl u:object_r:vendor_face_prop:s0
+persist.vendor.face. u:object_r:vendor_face_prop:s0
+vendor.face u:object_r:vendor_face_prop:s0

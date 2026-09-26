@@ -1,0 +1,7 @@
+# mac_permissions.xml assigns this seinfo only when both the package name and
+# the preserved Nothing signing certificate match.
+user=_app isPrivApp=true seinfo=nothing_qti_telephony name=org.codeaurora.ims domain=vendor_qtelephony type=app_data_file levelFrom=all
+user=_app seinfo=nothing_qti_telephony name=com.qualcomm.qti.telephonyservice domain=vendor_qtelephony type=app_data_file levelFrom=all
+user=_app isPrivApp=true seinfo=nothing_qti_telephony name=com.qti.phone domain=vendor_qtelephony type=app_data_file levelFrom=all
+user=_app isPrivApp=true seinfo=nothing_qti_telephony name=com.qualcomm.qcrilmsgtunnel domain=vendor_qtelephony type=app_data_file levelFrom=all
+user=_app isPrivApp=true seinfo=nothing_qti_qcc name=com.qti.qcc domain=vendor_qcc_app type=app_data_file levelFrom=all
