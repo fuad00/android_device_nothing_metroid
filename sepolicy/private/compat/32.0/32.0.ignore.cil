@@ -6,4 +6,8 @@
 (typeattributeset new_objects
   ( new_objects
     vendor_hal_displayfeature_nothing_default
-    vendor_hal_displayfeature_nothing_service))
+    vendor_hal_displayfeature_nothing_service
+    sltntc
+    sltntc_exec
+    sltntc_service
+    sysfs_led_driver_info))
