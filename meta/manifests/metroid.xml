@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Local manifest for Nothing Phone (3) (metroid, SM8735 / tuna) on LineageOS lineage-23.2.
-  Lives next to wly.xml in the shared tree on the build server; wly.xml already carries the shared
-  forks (Launcher3, DocumentsUI) and vendor/smk, so they are not repeated here.
-  Install: cp metroid.xml <top>/.repo/local_manifests/ && repo sync -c <paths below>
-  Kernel, modules, dtb and dtbo build from source; vendor blobs are extracted from stock
-  Nothing OS B4.1-260814-1733 on the server (copy: fuad00/proprietary_vendor_nothing_metroid).
+  Tree: /root/nothing_phone_3/lineage on the build server, separate from the OnePlus tree (git
+  objects borrowed via repo init reference=...oneplus.../.repo/project-objects).
+  Install: cp metroid.xml <top>/.repo/local_manifests/ && repo sync -c
+
+  The kernel is not part of this tree: meta/kernel/ (own Kleaf manifest) builds it from source and
+  stage-kernel.sh drops the result into device/nothing/metroid/kernel/out/.
+  Vendor blobs come from stock Nothing OS B4.1-260814-1733 (extract-files.py), private repo.
+
+  Platform forks carry logix727's lineage-23.0 carry series (android_device_nothing_metroid
+  patches/), rebased onto lineage-23.2 as commits with their original authorship; each fork's
+  branch is the upstream branch named here plus those commits.
 -->
 <manifest>
   <remote name="fuad00-metroid" fetch="https://github.com/fuad00" />
@@ -13,16 +19,63 @@
   <!-- Device (this monorepo: the tree is the repository root, docs and scripts are in meta/) -->
   <project path="device/nothing/metroid" name="nothing_phone_3_lineage" remote="fuad00-metroid" revision="main" />
 
-  <!-- Hardware -->
-  <project path="hardware/nothing" name="android_hardware_nothing" remote="fuad00-metroid" revision="lineage-23.2" />
+  <!-- Proprietary blobs (private) -->
+  <project path="vendor/nothing/metroid" name="proprietary_vendor_nothing_metroid" remote="fuad00-metroid" revision="lineage-23.2" />
 
-  <!-- Recovery: minui opens up to 32 input devices (metroid has 18+, the power key was beyond 16).
-       Shared with wly, where it changes nothing (fewer than 16 input devices). -->
+  <!-- Platform forks -->
+  <remove-project name="LineageOS/android_build" path="build/make" />
+  <project path="build/make" name="android_build" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk,sysui-studio">
+    <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
+    <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
+    <linkfile src="core" dest="build/core" />
+    <linkfile src="envsetup.sh" dest="build/envsetup.sh" />
+    <linkfile src="target" dest="build/target" />
+    <linkfile src="tools" dest="build/tools" />
+  </project>
+  <remove-project name="LineageOS/android_build_soong" path="build/soong" />
+  <project path="build/soong" name="android_build_soong" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk,sysui-studio,tradefed" />
+  <remove-project name="LineageOS/android_frameworks_av" path="frameworks/av" />
+  <project path="frameworks/av" name="android_frameworks_av" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk,sysui-studio" />
+  <remove-project name="LineageOS/android_frameworks_base" path="frameworks/base" />
+  <project path="frameworks/base" name="android_frameworks_base" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk-cw-fs,pdk-fs,sysui-studio" />
+  <remove-project name="LineageOS/android_hardware_interfaces" path="hardware/interfaces" />
+  <project path="hardware/interfaces" name="android_hardware_interfaces" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk,sysui-studio" />
+  <remove-project name="LineageOS/android_vendor_qcom_opensource_agm" path="hardware/qcom-caf/sm8750/audio/agm" />
+  <project path="hardware/qcom-caf/sm8750/audio/agm" name="android_vendor_qcom_opensource_agm" remote="fuad00-metroid" revision="lineage-23.2-caf-sm8750" groups="pakala-audio,qcom" />
+  <remove-project name="LineageOS/android_vendor_qcom_opensource_arpal-lx" path="hardware/qcom-caf/sm8750/audio/pal" />
+  <project path="hardware/qcom-caf/sm8750/audio/pal" name="android_vendor_qcom_opensource_arpal-lx" remote="fuad00-metroid" revision="lineage-23.2-caf-sm8750" groups="pakala-audio,qcom" />
+  <remove-project name="LineageOS/android_hardware_qcom_audio-ar" path="hardware/qcom-caf/sm8750/audio/primary-hal" />
+  <project path="hardware/qcom-caf/sm8750/audio/primary-hal" name="android_hardware_qcom_audio-ar" remote="fuad00-metroid" revision="lineage-23.2-caf-sm8750" groups="pakala-audio,qcom" />
+  <remove-project name="LineageOS/android_vendor_qcom_opensource_data-ipa-cfg-mgr" path="hardware/qcom-caf/sm8750/data-ipa-cfg-mgr" />
+  <project path="hardware/qcom-caf/sm8750/data-ipa-cfg-mgr" name="android_vendor_qcom_opensource_data-ipa-cfg-mgr" remote="fuad00-metroid" revision="lineage-23.2-caf-sm8750" groups="pakala-vendor,qcom" />
+  <remove-project name="LineageOS/android_vendor_qcom_opensource_dataipa" path="hardware/qcom-caf/sm8750/dataipa" />
+  <project path="hardware/qcom-caf/sm8750/dataipa" name="android_vendor_qcom_opensource_dataipa" remote="fuad00-metroid" revision="lineage-23.2-caf-sm8750" groups="pakala-vendor,qcom" />
+  <remove-project name="LineageOS/android_hardware_qcom_display" path="hardware/qcom-caf/sm8750/display/hal" />
+  <project path="hardware/qcom-caf/sm8750/display/hal" name="android_hardware_qcom_display" remote="fuad00-metroid" revision="lineage-23.2-caf-sm8750" groups="qcom" />
+  <remove-project name="LineageOS/android_packages_apps_Aperture" path="packages/apps/Aperture" />
+  <project path="packages/apps/Aperture" name="android_packages_apps_Aperture" remote="fuad00-metroid" revision="lineage-23.2" />
+  <remove-project name="LineageOS/android_packages_apps_AudioFX" path="packages/apps/AudioFX" />
+  <project path="packages/apps/AudioFX" name="android_packages_apps_AudioFX" remote="fuad00-metroid" revision="lineage-23.2" />
+  <remove-project name="LineageOS/android_packages_apps_Settings" path="packages/apps/Settings" />
+  <project path="packages/apps/Settings" name="android_packages_apps_Settings" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk-cw-tvc,pdk-fs,sysui-studio" />
+  <remove-project name="LineageOS/android_packages_modules_Bluetooth" path="packages/modules/Bluetooth" />
+  <project path="packages/modules/Bluetooth" name="android_packages_modules_Bluetooth" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk" />
+  <remove-project name="LineageOS/android_packages_modules_common" path="packages/modules/common" />
+  <project path="packages/modules/common" name="android_packages_modules_common" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk-cw-fs,pdk-fs" />
+  <remove-project name="LineageOS/android_packages_modules_Connectivity" path="packages/modules/Connectivity" />
+  <project path="packages/modules/Connectivity" name="android_packages_modules_Connectivity" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk-cw-fs,pdk-fs" />
+  <remove-project name="LineageOS/android_packages_modules_adb" path="packages/modules/adb" />
+  <project path="packages/modules/adb" name="android_packages_modules_adb" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk" />
+  <remove-project name="LineageOS/android_packages_providers_TelephonyProvider" path="packages/providers/TelephonyProvider" />
+  <project path="packages/providers/TelephonyProvider" name="android_packages_providers_TelephonyProvider" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk-cw-fs,pdk-fs" />
+  <remove-project name="LineageOS/android_system_sepolicy" path="system/sepolicy" />
+  <project path="system/sepolicy" name="android_system_sepolicy" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk" />
+  <remove-project name="LineageOS/android_vendor_lineage" path="vendor/lineage" />
+  <project path="vendor/lineage" name="android_vendor_lineage" remote="fuad00-metroid" revision="lineage-23.2" />
+  <remove-project name="LineageOS/android_vendor_apn" path="vendor/apn" />
+  <project path="vendor/apn" name="android_vendor_apn" remote="fuad00-metroid" revision="lineage-23.2" />
+  <remove-project name="LineageOS/android_vendor_qcom_opensource_vibrator" path="vendor/qcom/opensource/vibrator" />
+  <project path="vendor/qcom/opensource/vibrator" name="android_vendor_qcom_opensource_vibrator" remote="fuad00-metroid" revision="lineage-23.2" groups="pakala-vendor,qcom" />
   <remove-project name="LineageOS/android_bootable_recovery" path="bootable/recovery" />
-  <project path="bootable/recovery" name="android_bootable_recovery" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk" />
-
-  <!-- Kernel (built inline from source; arch/arm64/boot/dts/vendor links to ../sm8735-devicetrees) -->
-  <project path="kernel/nothing/sm8735" name="android_kernel_nothing_sm8735" remote="fuad00-metroid" revision="lineage-23.2" clone-depth="1" />
-  <project path="kernel/nothing/sm8735-modules" name="android_kernel_nothing_sm8735-modules" remote="fuad00-metroid" revision="lineage-23.2" clone-depth="1" />
-  <project path="kernel/nothing/sm8735-devicetrees" name="android_kernel_nothing_sm8735-devicetrees" remote="fuad00-metroid" revision="lineage-23.2" clone-depth="1" />
+  <project path="bootable/recovery" name="android_bootable_recovery" remote="fuad00-metroid" revision="lineage-23.2-metroid" groups="pdk" />
 </manifest>
