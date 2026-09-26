@@ -846,7 +846,7 @@ vendor/bin/hw/android.hardware.power-service
 vendor/bin/hw/android.hardware.power.stats-service
 vendor/bin/hw/android.hardware.secure_element-service.qti
 vendor/bin/hw/android.hardware.security.keymint-service-qti
-vendor/bin/hw/android.hardware.security.keymint-service-spu-qti
+vendor/bin/hw/android.hardware.security.keymint-service-spu-qti;DISABLE_DEPS
 vendor/bin/hw/android.hardware.security.keymint-service.strongbox-thales;DISABLE_DEPS
 vendor/bin/hw/android.hardware.weaver-service-spu-qti
 vendor/bin/hw/android.hardware.weaver-service.thales
