@@ -997,7 +997,6 @@ vendor/bin/sensors.qti
 vendor/bin/setup_oem_sec_boot.sh
 vendor/bin/sfdc_param_calibration
 vendor/bin/shsusrd
-vendor/bin/sigma_dut
 vendor/bin/slim_daemon
 vendor/bin/smcinvoke_example
 vendor/bin/smcinvoke_skeleton
@@ -3046,7 +3045,6 @@ vendor/lib64/libmfec.so
 vendor/lib64/libminkdescriptor.so
 vendor/lib64/libminkipcbinder_vendor.so
 vendor/lib64/libminksocket_vendor.so
-vendor/lib64/libmiracast.so
 vendor/lib64/libmlremosaicengine.so
 vendor/lib64/libmm-hdcpmgr.so
 vendor/lib64/libmm-omxcore.so
