@@ -1533,7 +1533,6 @@ vendor/etc/libnfc-hal-st.conf
 vendor/etc/libnfc-nci-felica.conf
 vendor/etc/libnfc-nci.conf
 vendor/etc/license.lic
-vendor/etc/linker.config.pb
 vendor/etc/lm/AppClassifierFeature.xml
 vendor/etc/lm/LightningLaunchesFeature.xml
 vendor/etc/lm/PreKillFeature.xml
