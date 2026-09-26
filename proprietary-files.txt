@@ -3759,3 +3759,15 @@ vendor/lib64/liblogwrap.so;MODULE_SUFFIX=_vendor
 # sharedsecret V2 is an unfrozen development version in source (interface marked frozen), so
 # the stock copy is installed as a plain file for libspukeymint
 vendor/lib64/android.hardware.security.sharedsecret-V2-ndk.so;MAKE_COPY_RULE_ONLY
+
+# Installed by proprietary_force_copy.mk; logix727's private vendor tree carried them, here they
+# are extracted from the stock dump
+vendor/bin/audioadsprpcd;EXTRACT_ONLY
+vendor/bin/hw/android.hardware.drm-service.clearkey;EXTRACT_ONLY
+vendor/bin/hw/android.hardware.sensors-service.multihal;EXTRACT_ONLY
+vendor/bin/hw/android.hardware.wifi-service;EXTRACT_ONLY
+vendor/bin/hw/vendor.qti.hardware.memtrack-service;EXTRACT_ONLY
+vendor/bin/ipacm;EXTRACT_ONLY
+vendor/etc/camera/Metroid_smoothzoom_config.json:vendor/etc/camera/metroid_smoothzoom_config.json;EXTRACT_ONLY
+vendor/etc/wifi/wcn7750/WCNSS_qcom_cfg.ini;EXTRACT_ONLY
+vendor/etc/wifi/wcn7750/WCNSS_qcom_cfg.ini:vendor/firmware/wlan/qca_cld/wcn7750/WCNSS_qcom_cfg.ini;EXTRACT_ONLY
