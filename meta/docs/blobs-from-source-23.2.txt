@@ -306,3 +306,4 @@ system_ext/lib64/android.hardware.radio@1.6.so
 vendor/lib64/libaconfig_storage_read_api_cc.so
 # Found by the build:
 vendor/lib64/libc++.so
+vendor/lib64/soundfx/libhapticgenerator.so

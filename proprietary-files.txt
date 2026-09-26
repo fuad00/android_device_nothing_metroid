@@ -3528,7 +3528,6 @@ vendor/lib64/soundfx/libdownmixaidl.so
 vendor/lib64/soundfx/libdynamicsprocessingaidl.so
 vendor/lib64/soundfx/libdynproc.so
 vendor/lib64/soundfx/libeffectproxy.so
-vendor/lib64/soundfx/libhapticgenerator.so
 vendor/lib64/soundfx/libldnhncr.so
 vendor/lib64/soundfx/libloudnessenhanceraidl.so
 vendor/lib64/soundfx/libqcompostprocbundle.so
