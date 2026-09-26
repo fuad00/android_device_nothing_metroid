@@ -33,7 +33,6 @@ llcc_heuristics.ko
 boot_stats.ko
 tmecom-intf.ko
 qcom_va_minidump.ko
-qcom_dynamic_ramoops.ko
 hung_task_enh.ko
 memlat.ko
 bwmon.ko
