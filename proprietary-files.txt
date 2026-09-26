@@ -2855,7 +2855,6 @@ vendor/lib64/libbluetooth_audio_session_qti_2_1.so
 vendor/lib64/libboot_control_qti.so
 vendor/lib64/libbt-hidlclient.so
 vendor/lib64/libbtnv.so
-vendor/lib64/libc++.so
 vendor/lib64/libcacertclient.so
 vendor/lib64/libcamera2ndk_vendor.so
 vendor/lib64/libcamerapostproc.so
@@ -3807,3 +3806,6 @@ vendor/etc/vintf/manifest/vendor.qti.hardware.display.demura-service.xml
 vendor/bin/hw/vendor.qti.hardware.vibrator.service;MODULE_SUFFIX=.stock
 vendor/etc/init/vendor.qti.hardware.vibrator.service.rc
 vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xml
+
+# AIDL NDK platform backend: soong no longer generates *-ndk_platform, so the stock copy stays
+vendor/lib64/android.hardware.common-V2-ndk_platform.so
