@@ -307,3 +307,4 @@ vendor/lib64/libaconfig_storage_read_api_cc.so
 # Found by the build:
 vendor/lib64/libc++.so
 vendor/lib64/soundfx/libhapticgenerator.so
+vendor/lib64/libsensorndkbridge.so

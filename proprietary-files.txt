@@ -3312,7 +3312,6 @@ vendor/lib64/libseclog.so
 vendor/lib64/libsensor_calibration.so
 vendor/lib64/libsensor_extension.so
 vendor/lib64/libsensorcal.so
-vendor/lib64/libsensorndkbridge.so
 vendor/lib64/libsensorslog.so
 vendor/lib64/libsfeShiftExtrapolation.so
 vendor/lib64/libshsc.so
