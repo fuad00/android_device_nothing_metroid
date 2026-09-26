@@ -24,10 +24,6 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
     return f'{lib}_{partition}' if partition == 'vendor' else None
 
 
-def lib_fixup_stock_suffix(lib: str, *args, **kwargs):
-    return f'{lib}_stock'
-
-
 def stock_vendor_libs():
     # Libraries listed with MODULE_SUFFIX=_vendor: stock copies that coexist with a source
     # module of the same name; vendor users must link the stock copy.
@@ -43,8 +39,6 @@ def stock_vendor_libs():
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     stock_vendor_libs(): lib_fixup_vendor_suffix,
-    # Only adb/minadbd may link the AOSP libmdnssd; libmiracastsystem gets stock's copy
-    'libmdnssd': lib_fixup_stock_suffix,
 }
 
 namespace_imports = [
