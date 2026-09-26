@@ -6,7 +6,7 @@
 # too, so after joining on the Mac (cat file.zip.part* > file.zip) `shasum -a 256 -c` checks it.
 set -euo pipefail
 REPO=fuad00/nothing_phone_3_lineage
-OUT=/root/oneplus_10_pro_lineage/lineage/out/target/product/metroid
+OUT=/root/nothing_phone_3/lineage/out/target/product/metroid
 STAGE=/root/nothing_phone_3/release
 TAG=$1
 NOTES=${2:-}
@@ -14,7 +14,7 @@ NOTES=${2:-}
 zip=$(ls -t "$OUT"/lineage-23.2-*-UNOFFICIAL*-metroid.zip | head -1)
 z=$(basename "$zip")
 rm -rf "${STAGE:?}/$TAG" && mkdir -p "$STAGE/$TAG" && cd "$STAGE/$TAG"
-[ "${ZIP_ONLY:-0}" = 1 ] || for f in boot.img init_boot.img vendor_boot.img dtbo.img recovery.img vbmeta.img vbmeta_system.img vbmeta_vendor.img; do
+[ "${ZIP_ONLY:-0}" = 1 ] || for f in boot.img init_boot.img vendor_boot.img dtbo.img recovery.img pvmfw.img vbmeta.img vbmeta_system.img vbmeta_vendor.img; do
   [ -f "$OUT/$f" ] && ln -f "$OUT/$f" .
 done
 ln -f "$zip" .
