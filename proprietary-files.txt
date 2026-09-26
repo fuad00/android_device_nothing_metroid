@@ -2119,8 +2119,6 @@ vendor/bin/init.qti.kernel.early_debug-sun.sh
 vendor/bin/init.qti.kernel.early_debug-tuna.sh
 
 # Dependencies (metroid, ELF NEEDED closure; review)
-vendor/lib64/libPeripheralStateUtils.so
-vendor/lib64/libar-gsl.so
 vendor/lib64/libarcsoft_tfp_grf.so
 vendor/lib64/libarcsoft_tfp_hdr.so
 vendor/lib64/libarcsoft_tfp_hdr_front.so
@@ -2129,7 +2127,5 @@ vendor/lib64/libarcsoft_tfp_sn.so
 vendor/lib64/libarcsoft_tfp_sn_front.so
 vendor/lib64/libarcsoft_tfp_super_resolution.so
 vendor/lib64/libmotiondetection.arcsoft.so
-vendor/lib64/libqti_vndfwk_detect.so
 vendor/lib64/librender_lib.so
 vendor/lib64/libstmobile_effect.so
-vendor/lib64/libvmmem.so

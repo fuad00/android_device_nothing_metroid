@@ -55,7 +55,7 @@ def needed(path):
 vlib={}
 for f in walk('vendor/lib64'):
     vlib.setdefault(os.path.basename(f),[]).append(f)
-PROPRIETARY=re.compile(r'^(libarcsoft|libmotiondetection|libstmobile|libPeripheralStateUtils|libar-gsl|libvmmem|libqti_vndfwk_detect|librender_lib)')
+PROPRIETARY=re.compile(r'^(libarcsoft|libmotiondetection|libstmobile|librender_lib)')
 closure=[]; queue=[k for k in kept if k.startswith(('vendor/','odm/'))]
 seen=set()
 while queue:
