@@ -417,4 +417,170 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <!-- Stock vendor HALs declared by the extracted stock VINTF fragments -->
+    <hal format="aidl" optional="true">
+        <name>vendor.noth.hardware.sensor.sensor_extension</name>
+        <version>1</version>
+        <interface>
+            <name>ISensorExtension</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.noth.hardware.stability</name>
+        <version>1</version>
+        <interface>
+            <name>IStability</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.diaghal</name>
+        <version>1</version>
+        <interface>
+            <name>Idiag</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.alarm</name>
+        <version>1</version>
+        <interface>
+            <name>IAlarm</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.bttpi</name>
+        <version>3</version>
+        <interface>
+            <name>IBtTpi</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.c2pa</name>
+        <version>1</version>
+        <interface>
+            <name>IC2PA</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.capabilityconfigstore</name>
+        <version>1</version>
+        <interface>
+            <name>ICapabilityConfigStore</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.embmssl</name>
+        <version>2</version>
+        <interface>
+            <name>IEmbms</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.fm</name>
+        <version>1</version>
+        <interface>
+            <name>IFmHci</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.hexlp</name>
+        <version>1</version>
+        <interface>
+            <name>IHexlpService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.power.powermodule</name>
+        <version>1</version>
+        <interface>
+            <name>IPowerModule</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.qasr</name>
+        <version>2</version>
+        <interface>
+            <name>IQasr</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.qconfig</name>
+        <version>1</version>
+        <interface>
+            <name>IQConfig</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.secureprocessor.device</name>
+        <version>1</version>
+        <interface>
+            <name>ISecureProcessor</name>
+            <instance>qti-tee</instance>
+            <instance>qti-tvm</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.servicetrackeraidl</name>
+        <version>1</version>
+        <interface>
+            <name>IServicetracker</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.vpp</name>
+        <version>1</version>
+        <interface>
+            <name>IVppService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.wifidisplaysession_aidl</name>
+        <version>1</version>
+        <interface>
+            <name>IWifiDisplaySessionAudioTrack</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IWifiDisplaySession</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IWifiDisplaySessionImageTrack</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IWifiDisplaySessionVideoTrack</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.wifi.wifilearner</name>
+        <version>1</version>
+        <interface>
+            <name>IWifiStats</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.syshealthmon</name>
+        <version>1</version>
+        <interface>
+            <name>ISysHealthMon</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>
