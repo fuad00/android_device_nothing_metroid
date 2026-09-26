@@ -49,3 +49,26 @@
   vendor_boot, dtbo, recovery, pvmfw, vbmeta* в оба слота; `fastboot -w`; sideload). У них: ядро — стоковое GKI
   `6.6.127-android15-8-g1a9b880d342b` (prebuilt), vbmeta `Flags: 1`, свой pvmfw, dtb — tuna+tuna7+tunap, dtbo — 12 overlay.
   Эталон рабочей загрузки (модули, свойства, logcat) — `~/Downloads/nothing_phone_3/logs/logix727/`.
+
+## Этап 1: ядро из исходников на сборке logix727 (26.09.2026) — работает
+
+- **Сборка.** Kleaf, как у Nothing: `//common:kernel_aarch64` (AOSP `1a9b880d342b`, тот же коммит, из которого Google собрал
+  стоковый GKI B4.1) + NothingOSS msm-kernel `sm8735/b/mr` (форк `fuad00/android_kernel_msm-6.6_nothing_sm8735`).
+  Идентичность — коммитами в форке `build/kernel`: `6.6.127-android15-8-fuad00-4k (fuad00@fuad00-lineage)`.
+  Правки: `qbt_handler`, `spcom`, `spss_utils` в B4.1 объявлены только для вариантов gki/consolidate — добавлен perf;
+  ST NFC (`stm_nfc_i2c`, `stm_st54se_gpio`) собирается из `st/opensource` форка sm8735-modules (logix727 брал их из стока);
+  «exported twice» в modpost — патч logix727 (дедупликация `Module.symvers`) коммитом в `build/kernel`.
+  Модули и `modules.dep` против стока B4.1: совпадают все, кроме `cqhci` и устаревшего `tls.ko` (стоковый — от 6.6.102).
+  dtb/dtbo (`build_tuna_dtb.sh` logix727) — байт в байт как у logix727.
+- **Тупик: ветка `sm8735/v/mr` (6.6.57).** Модули расходятся со стоком в 119 модулях; logix727 записал, что такие модули
+  отвергаются на первой стадии. Сохранена как `lineage-23.2-v657`, не используется.
+- **`init_user0_failed` — не модули, а AVB-свойства boot.** Тестовый `boot.img` переподписан без свойств футера
+  (`com.android.build.boot.security_patch` и др.) → загрузчик отдаёт KeyMint другой boot patch level → KeyMint не
+  открывает существующие ключи: `vold: decryptWithKeystoreKey failed`, `keystore2` SIGABRT → recovery. С перенесёнными
+  свойствами загружается. `fastboot boot` берёт свойства из прошитого `boot_a`, поэтому шаг А (прошит был boot logix727)
+  прошёл. В настоящей сборке свойства ставит система сборки; урок — не терять свойства при ручной переупаковке.
+- **Логи при раннем сбое** есть в разделе `nt_kmsg` (64 МБ, модуль Nothing `nothing_writeback_kmsg` пишет туда kmsg
+  нескольких последних загрузок): `adb exec-out 'dd if=/dev/block/by-name/nt_kmsg'` из recovery. pstore пуст.
+- **Только ядро без своих модулей** (`fastboot boot`, модули logix727): GKI-модули из `system_dlkm` подписаны ключом
+  Google и нашим ядром не грузятся (кроме zram) → нет Bluetooth/звука; ядро и модули нужно ставить одним комплектом.
+- Итог: Wi-Fi, Bluetooth, звук, камера, NFC-драйвер работают; 60 Гц и FRP — проблемы пользовательской части logix727.
