@@ -69,6 +69,11 @@ blob_fixups: blob_fixups_user_type = {
             r'(service\s+vendor\.qms\s+/vendor/bin/qms\s*\n)',
             r'\1    user root\n'
         ),
+    'vendor/etc/init/hw/init.nt_product.rc': blob_fixup()
+        .regex_replace(
+            r'(service\s+vendor\.charge-default-poweroff\s+\S+\s*\n)',
+            r'\1    user root\n'
+        ),
     'vendor/etc/init/vendor.dpmd.rc': blob_fixup()
         .regex_replace(
             r'(service\s+vendor\.dpmd\s+/vendor/bin/vendor\.dpmd\s*\n)',
