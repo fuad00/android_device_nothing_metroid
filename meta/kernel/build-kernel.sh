@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Build the metroid kernel with Kleaf: GKI Image (//common), msm-kernel modules and the Qualcomm/
-# Nothing techpack modules for sun_perf, plus dtb/dtbo. Output: <ws>/bazel-bin/..., dist in <ws>/out/dist.
+# Nothing techpack modules for sun_perf, plus the dtc tools build_tuna_dtb.sh needs. Output lands in
+# <ws>/bazel-bin/...; stage-kernel.sh collects it into one directory.
 #   build-kernel.sh [kernel-workspace]   (default /root/nothing_phone_3/kernelws)
 # Log: /root/nothing_phone_3/logs/kernel_build_<date>.log (current_kernel_build.log links to it)
 set -o pipefail
