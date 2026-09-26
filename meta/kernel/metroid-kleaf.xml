@@ -18,8 +18,9 @@
        6.6.127-android15-8-g1a9b880d342b-ab15218529 -->
   <project name="kernel/common" path="common" remote="aosp"
            revision="1a9b880d342bb9dcfa59abf8a26af3b970009f8b" clone-depth="1" />
-  <project name="clo/la/kernel/build.git" path="build/kernel" remote="clo"
-           revision="0c7bb83b440c55dcaee088ab3c95652f4451b62c" />
+  <!-- CLO build/kernel 0c7bb83b + fuad00 identity (fuad00@fuad00-lineage, -fuad00) -->
+  <project name="android_kernel_build.git" path="build/kernel"
+           remote="fuad00" revision="lineage-23.2" />
   <project name="platform/build/bazel_common_rules" path="build/bazel_common_rules"
            remote="aosp" revision="9530bee133971f25758a2e1085755200999ca1bf" />
 
