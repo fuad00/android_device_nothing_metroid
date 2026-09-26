@@ -16,6 +16,11 @@
   <!-- Hardware -->
   <project path="hardware/nothing" name="android_hardware_nothing" remote="fuad00-metroid" revision="lineage-23.2" />
 
+  <!-- Recovery: minui opens up to 32 input devices (metroid has 18+, the power key was beyond 16).
+       Shared with wly, where it changes nothing (fewer than 16 input devices). -->
+  <remove-project name="LineageOS/android_bootable_recovery" path="bootable/recovery" />
+  <project path="bootable/recovery" name="android_bootable_recovery" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk" />
+
   <!-- Kernel (built inline from source; arch/arm64/boot/dts/vendor links to ../sm8735-devicetrees) -->
   <project path="kernel/nothing/sm8735" name="android_kernel_nothing_sm8735" remote="fuad00-metroid" revision="lineage-23.2" clone-depth="1" />
   <project path="kernel/nothing/sm8735-modules" name="android_kernel_nothing_sm8735-modules" remote="fuad00-metroid" revision="lineage-23.2" clone-depth="1" />
