@@ -2,7 +2,6 @@ vendor/bin/aw882xx_cali
 vendor/etc/acdbdata/kera_qrd/NT_AudioParam_Version.txt
 vendor/etc/acdbdata/kera_qrd/QRD_kera_acdb_cal.acdb
 vendor/etc/acdbdata/kera_qrd/QRD_kera_workspaceFileXml.qwsp
-vendor/lib64/libar-gsl.so 
 vendor/etc/lvacfs_params/3mic/audiozoom_2.txt
 vendor/etc/lvacfs_params/3mic/audiozoom_4.txt
 vendor/etc/lvacfs_params/3mic/LVACFS_Configuration.txt
@@ -82,7 +81,6 @@ vendor/lib64/liblivephotosr.arcsoft.so
 vendor/lib64/libmorpho_ubwc.so
 vendor/firmware/aw882xx_acf.bin
 vendor/firmware/regulatory.db
-vendor/lib64/libthermalclient.so 
 vendor/firmware/haptic_config.bin
 vendor/etc/vintf/manifest/bcs-ranging.xml
 vendor/lib64/hw/qc_bcs_lib.so

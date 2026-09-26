@@ -9,7 +9,7 @@ def src_of(line):
 def exists(p): return os.path.lexists(os.path.join(D,p))
 out=[]; kept=set(); dropped=[]
 for l in open(SRC):
-    l=l.rstrip('\n')
+    l=l.rstrip()
     if not l.strip() or l.startswith('#'):
         out.append(l); continue
     s=src_of(l)

@@ -136,6 +136,7 @@ vendor/lib64/lib_lvacfs.so
 vendor/lib64/libadm.so
 vendor/lib64/libar-acdb.so
 vendor/lib64/libar-gpr.so
+vendor/lib64/libar-gsl.so
 vendor/lib64/libar-pal.so
 vendor/lib64/libarmemlog.so
 vendor/lib64/libats.so
@@ -1009,7 +1010,7 @@ vendor/firmware/goodixfp64.b07
 vendor/firmware/goodixfp64.b08
 vendor/firmware/goodixfp64.mdt
 
-# Firmware 
+# Firmware
 vendor/firmware/gen70900_aqe.fw
 vendor/firmware/gen70900_sqe.fw
 vendor/firmware/gen70900_zap.mbn
@@ -1107,7 +1108,7 @@ vendor/lib64/libxtadapter.so
 vendor/lib64/vendor.qti.gnss-service.so
 vendor/lib64/vendor.qti.gnss-V7-ndk.so
 
-# FeliCa 
+# FeliCa
 product/app/MobileFeliCaClient/MobileFeliCaClient.apk;PRESIGNED
 product/app/MobileFeliCaMenuMainApp/MobileFeliCaMenuMainApp.apk;PRESIGNED
 product/app/MobileFeliCaSettingApp/MobileFeliCaSettingApp.apk;PRESIGNED
@@ -1700,6 +1701,7 @@ vendor/etc/init/vendor.qti.tftp.rc
 vendor/bin/thermal-engine-v2
 vendor/etc/init/init_thermal-engine-v2.rc
 vendor/etc/thermal-engine.conf
+vendor/lib64/libthermalclient.so
 
 # Thermal (Sltntc)
 vendor/etc/sltntc/sltntc.conf
