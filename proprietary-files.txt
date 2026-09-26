@@ -582,7 +582,6 @@ system/lib64/libprotobuf-cpp-lite.so:system_ext/lib64/libprotobuf-cpp-lite-stock
 system_ext/lib64/libWNR.so
 system_ext/lib64/libWNR_intf.so
 system_ext/lib64/libaudiohalvendorextn.so
-system_ext/lib64/libavenhancements.so
 system_ext/lib64/libbeluga.so
 system_ext/lib64/libbinauralrenderer_wrapper.qti.so
 system_ext/lib64/libcomposerextn.qti.so
