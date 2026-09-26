@@ -3811,4 +3811,4 @@ vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xml
 vendor/lib64/android.hardware.common-V2-ndk_platform.so
 
 # No vendor variant in source (system-only liblogwrap): the stock copy stays
-vendor/lib64/liblogwrap.so
+vendor/lib64/liblogwrap.so;MODULE_SUFFIX=_vendor
