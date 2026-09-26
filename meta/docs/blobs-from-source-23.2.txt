@@ -115,7 +115,6 @@ vendor/lib64/libjpeg.so
 vendor/lib64/libjsoncpp.so
 vendor/lib64/libkeymaster_messages.so
 vendor/lib64/libkeymaster_portable.so
-vendor/lib64/liblogwrap.so
 vendor/lib64/liblzma.so
 vendor/lib64/libmedia_helper.so
 vendor/lib64/libmediautils_vendor.so

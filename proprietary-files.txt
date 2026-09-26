@@ -3809,3 +3809,6 @@ vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xml
 
 # AIDL NDK platform backend: soong no longer generates *-ndk_platform, so the stock copy stays
 vendor/lib64/android.hardware.common-V2-ndk_platform.so
+
+# No vendor variant in source (system-only liblogwrap): the stock copy stays
+vendor/lib64/liblogwrap.so
