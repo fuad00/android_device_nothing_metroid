@@ -36,9 +36,29 @@ def stock_vendor_libs():
     return tuple(names)
 
 
+STOCK_ABI_LIBS = ('libtinyxml2', 'libjsoncpp', 'libxml2', 'libchrome', 'libflatbuffers-cpp')
+
+
+def stock_abi_users():
+    # stock-abi-users.txt (meta/scripts/gen-stock-abi.py): blobs that must keep the stock copy
+    # of a C++ library whose ABI differs from the source build
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stock-abi-users.txt')
+    users = {}
+    for line in open(path):
+        fields = line.split('#')[0].split()
+        if len(fields) > 1:
+            users[fields[0]] = fields[1:]
+    return users
+
+
+def lib_fixup_stock_abi(lib: str, partition: str, *args, **kwargs):
+    return f'{lib}_system_ext' if partition == 'system_ext' else lib
+
+
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     stock_vendor_libs(): lib_fixup_vendor_suffix,
+    tuple(f'{lib}-stock' for lib in STOCK_ABI_LIBS): lib_fixup_stock_abi,
     # hardware/qcom-caf/wlan also has a wifihal_qcom_defaults named libwifi-hal-qcom; point
     # stock users at the library itself
     'libwifi-hal-qcom': lambda *args, **kwargs: '//hardware/qcom-caf/wlan/qcwcn:libwifi-hal-qcom',
@@ -178,6 +198,12 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/etc/init/vendor.qti.media.c2audio@1.0-service.rc': blob_fixup()
         .regex_replace('    disabled\n', ''),
 }
+
+for path, libs in stock_abi_users().items():
+    fixup = blob_fixups.get(path, blob_fixup())
+    for lib in libs:
+        fixup = fixup.replace_needed(f'{lib}.so', f'{lib}-stock.so')
+    blob_fixups[path] = fixup
 
 module = ExtractUtilsModule(
     'metroid',

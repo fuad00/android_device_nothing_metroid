@@ -3796,3 +3796,14 @@ vendor/etc/vintf/manifest/vendor.qti.hardware.wifi.wifilearner-service.xml
 vendor/etc/vintf/manifest/vendor.qti.hardware.wifidisplaysession-service.xml
 vendor/etc/vintf/manifest/vendor.qti.syshealthmon-service.xml
 vendor/etc/vintf/manifest/manifest_audio_qti_services.xml
+
+# Stock copies of C++ libraries whose ABI differs from the source build, for the stock blobs
+# listed in stock-abi-users.txt (their DT_NEEDED is rewritten to <lib>-stock.so)
+vendor/lib64/libtinyxml2.so:vendor/lib64/libtinyxml2-stock.so;FIX_SONAME
+vendor/lib64/libjsoncpp.so:vendor/lib64/libjsoncpp-stock.so;FIX_SONAME
+vendor/lib64/libxml2.so:vendor/lib64/libxml2-stock.so;FIX_SONAME
+vendor/lib64/libchrome.so:vendor/lib64/libchrome-stock.so;FIX_SONAME
+vendor/lib64/libflatbuffers-cpp.so:vendor/lib64/libflatbuffers-cpp-stock.so;FIX_SONAME
+system/lib64/libtinyxml2.so:system_ext/lib64/libtinyxml2-stock.so;FIX_SONAME;MODULE_SUFFIX=_system_ext
+system/lib64/libjsoncpp.so:system_ext/lib64/libjsoncpp-stock.so;FIX_SONAME;MODULE_SUFFIX=_system_ext
+system/lib64/libxml2.so:system_ext/lib64/libxml2-stock.so;FIX_SONAME;MODULE_SUFFIX=_system_ext
