@@ -6,7 +6,7 @@ def fdts(d):
         i=d.find(b'\xd0\x0d\xfe\xed',i)
         if i<0: return
         size=struct.unpack('>I',d[i+4:i+8])[0]
-        if 0<size<len(d): yield i,d[i:i+size]
+        if 0<size<=len(d)-i: yield i,d[i:i+size]
         i+=4
 def props(b):
     off_struct,off_str=struct.unpack('>II',b[8:16])
