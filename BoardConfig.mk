@@ -89,6 +89,11 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
 TARGET_NEEDS_DTBOIMAGE := true
+# The devicetrees build every sun-family SoC (sun, kera, tuna) and board; metroid is the tuna
+# SoC (msm-id 0x28f) with the tuna QRD overlay. Without the filters dtb.img grows to 240 MB
+# (517 merged trees) and does not fit vendor_boot.
+TARGET_MERGE_DTBS_WILDCARD := tuna
+TARGET_MERGE_DTBOS_WILDCARD := tuna-*
 
 # Display
 TARGET_SCREEN_DENSITY := 480
