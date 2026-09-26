@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Local manifest for Nothing Phone (3) (metroid, SM8735 / tuna) on LineageOS lineage-23.2.
+  Lives next to wly.xml in the shared tree on the build server; wly.xml already carries the shared
+  forks (Launcher3, DocumentsUI) and vendor/smk, so they are not repeated here.
+  Install: cp metroid.xml <top>/.repo/local_manifests/ && repo sync -c <paths below>
+  Kernel, modules, dtb and dtbo build from source; vendor blobs are extracted from stock
+  Nothing OS B4.1-260814-1733 on the server (copy: fuad00/proprietary_vendor_nothing_metroid).
+-->
+<manifest>
+  <remote name="fuad00-metroid" fetch="https://github.com/fuad00" />
+
+  <!-- Device (this monorepo: the tree is the repository root, docs and scripts are in meta/) -->
+  <project path="device/nothing/metroid" name="nothing_phone_3_lineage" remote="fuad00-metroid" revision="main" />
+
+  <!-- Hardware -->
+  <project path="hardware/nothing" name="android_hardware_nothing" remote="fuad00-metroid" revision="lineage-23.2" />
+
+  <!-- Kernel (built inline from source; arch/arm64/boot/dts/vendor links to ../sm8735-devicetrees) -->
+  <project path="kernel/nothing/sm8735" name="android_kernel_nothing_sm8735" remote="fuad00-metroid" revision="lineage-23.2" clone-depth="1" />
+  <project path="kernel/nothing/sm8735-modules" name="android_kernel_nothing_sm8735-modules" remote="fuad00-metroid" revision="lineage-23.2" clone-depth="1" />
+  <project path="kernel/nothing/sm8735-devicetrees" name="android_kernel_nothing_sm8735-devicetrees" remote="fuad00-metroid" revision="lineage-23.2" clone-depth="1" />
+</manifest>
