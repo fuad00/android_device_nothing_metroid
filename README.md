@@ -31,3 +31,4 @@ Virtual A/B со сжатием, экран 1260×2800 @ 480 dpi. Подробн
 - [meta/docs/porting-log.md](meta/docs/porting-log.md) — журнал проблем и исправлений
 - [meta/docs/flashing.md](meta/docs/flashing.md) — бэкап, обновление стока, прошивка
 - [meta/docs/test-matrix.md](meta/docs/test-matrix.md) — проверка железа
+- [meta/docs/logix727-lessons.md](meta/docs/logix727-lessons.md) — уроки чужого бринг-апа metroid
