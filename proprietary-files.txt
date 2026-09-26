@@ -579,6 +579,7 @@ system_ext/lib64/libQSEEComAPI_system.so
 system_ext/lib64/libQTEEConnector_system.so
 system_ext/lib64/libQmsNtnProto.so
 system/lib64/libprotobuf-cpp-lite.so:system_ext/lib64/libprotobuf-cpp-lite-stock.so;FIX_SONAME
+system/lib64/libprotobuf-cpp-full.so:system_ext/lib64/libprotobuf-cpp-full-stock.so;FIX_SONAME
 system_ext/lib64/libWNR.so
 system_ext/lib64/libWNR_intf.so
 system_ext/lib64/libaudiohalvendorextn.so
@@ -627,7 +628,7 @@ system_ext/lib64/libmmrtpdecoder.so
 system_ext/lib64/libmmrtpencoder.so
 system_ext/lib64/libmsp.so
 system_ext/lib64/libmwqemiptablemgr.so
-system_ext/lib64/libofflineproc_jni.so
+system_ext/lib64/libofflineproc_jni.so;DISABLE_CHECKELF
 system_ext/lib64/libpenguin.so
 system_ext/lib64/libpenguin_impl.so
 system_ext/lib64/libqape.qti.so
@@ -670,7 +671,7 @@ system_ext/lib64/libwfddisplayconfig.so
 system_ext/lib64/libwfdmminterface.so
 system_ext/lib64/libwfdmmsink.so
 system_ext/lib64/libwfdmmsrc_system.so
-system_ext/lib64/libwfdnative.so
+system_ext/lib64/libwfdnative.so;DISABLE_CHECKELF
 system_ext/lib64/libwfdrtsp.so
 system_ext/lib64/libwfdservice.so
 system_ext/lib64/libwfdsinksm.so
@@ -3027,7 +3028,7 @@ vendor/lib64/libmmfp.so
 vendor/lib64/libmmosal_vendor.so
 vendor/lib64/libmmrtpdecoder_vendor.so
 vendor/lib64/libmmrtpencoder_vendor.so
-vendor/lib64/libmorpho_RapidEffect.so
+vendor/lib64/libmorpho_RapidEffect.so;DISABLE_CHECKELF
 vendor/lib64/libmorpho_video_stabilizer.so
 vendor/lib64/libmotiondetection.arcsoft.so
 vendor/lib64/libmpbase.so
@@ -3067,7 +3068,7 @@ vendor/lib64/libntcamimage_io.so
 vendor/lib64/libntcammetadata.so
 vendor/lib64/libntcampipepb.so
 vendor/lib64/libntcamselector.so
-vendor/lib64/libntcamskia.so
+vendor/lib64/libntcamskia.so;DISABLE_CHECKELF
 vendor/lib64/libntcamthread.so
 vendor/lib64/libntcamultrahdr.so
 vendor/lib64/libntcamyuv.so
@@ -3764,3 +3765,6 @@ vendor/bin/ipacm;EXTRACT_ONLY
 vendor/etc/camera/Metroid_smoothzoom_config.json:vendor/etc/camera/metroid_smoothzoom_config.json;EXTRACT_ONLY
 vendor/etc/wifi/wcn7750/WCNSS_qcom_cfg.ini;EXTRACT_ONLY
 vendor/etc/wifi/wcn7750/WCNSS_qcom_cfg.ini:vendor/firmware/wlan/qca_cld/wcn7750/WCNSS_qcom_cfg.ini;EXTRACT_ONLY
+
+# Stock TFLite with the XNNPack delegate, for the voice activation libraries built against it
+vendor/lib64/libtensorflowlite_c.so:vendor/lib64/libtensorflowlite_c-stock.so;FIX_SONAME

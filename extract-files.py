@@ -56,9 +56,18 @@ namespace_imports = [
 ]
 
 blob_fixups: blob_fixups_user_type = {
-    # The satellite (NTN) proto library was built against the stock protobuf; give it that copy
-    'system_ext/lib64/libQmsNtnProto.so': blob_fixup()
+    # Satellite (NTN) and QCC libraries were built against the stock protobuf; give them that copy
+    ('system_ext/lib64/libQmsNtnProto.so', 'system_ext/lib64/libqms_ntnsatellite_sdk.so'): blob_fixup()
         .replace_needed('libprotobuf-cpp-lite.so', 'libprotobuf-cpp-lite-stock.so'),
+    'system_ext/lib64/vendor.qti.hardware.qccsyshal@1.2-halimpl.so': blob_fixup()
+        .replace_needed('libprotobuf-cpp-full.so', 'libprotobuf-cpp-full-stock.so'),
+    # Voice activation libraries need stock TFLite's XNNPack delegate
+    (
+        'vendor/lib64/libVoiceSdk.so',
+        'vendor/lib64/libcapiv2uvvendor.so',
+        'vendor/lib64/liblistensoundmodel2vendor.so',
+    ): blob_fixup()
+        .replace_needed('libtensorflowlite_c.so', 'libtensorflowlite_c-stock.so'),
     # Declared as XML 2.0; the build parses permission files and accepts only XML 1.0
     'system_ext/etc/permissions/vendor.qti.hardware.c2pa-V1-java.xml': blob_fixup()
         .regex_replace('<\\?xml version="2.0"', '<?xml version="1.0"'),
