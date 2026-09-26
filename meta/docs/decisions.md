@@ -7,6 +7,11 @@
 | 2026-09-26 | Бэкап — через `fastboot boot` ядра стока + Magisk-ramdisk (без записи во флеш) | Самый обратимый способ получить root |
 | 2026-09-26 | Обновление стока — `update_engine_client` с полным OTA в неактивный слот | Официальный механизм: подпись payload проверяет телефон, при неудаче загрузчик возвращается в старый слот |
 | 2026-09-26 | Освобождено место на сервере (OnePlus: `/root/stock`, `/root/release`, `archive/…/old_trees`, `release/stock-901-os` — есть в Releases, `stock/901` — есть zip) | 35 → 67 ГБ |
+| 2026-09-26 | База device-дерева — **AmphibianArcade/android_device_nothing_FroggerPro** (Phone (4a) Pro, та же платформа `sun`, lineage-23.2), адаптированная под metroid | Самое чистое 23.2-дерево Nothing на sun; блоки, init и fstab почти совпадают со стоком metroid (1779 из 1869 блобов есть у metroid). Всё устройство-зависимое заменено стоком B4.1 metroid |
+| 2026-09-26 | Ядро, модули, dtb/dtbo — из исходников: форки **HELLBOY017/kernel_nothing_sm8735{,-modules,-devicetrees}** (ветка `lineage-23.2`), сборка как у официального `oneplus/sm8750-common` (`BOARD_USES_QCOM_MERGE_DTBS_SCRIPT`, `TARGET_NEEDS_DTBOIMAGE`) | У FroggerPro dtb/dtbo — prebuilt; ядро HELLBOY017 уже разложено под сборку LineageOS и содержит Nothing B4.0 |
+| 2026-09-26 | `hardware/nothing` — ветка AmphibianArcade (в форке `fuad00/android_hardware_nothing`, ветка `lineage-23.2`; вариант LineageOS сохранён в `lineage-23.2-lineageos`) | Их AIDL-обёртка отпечатка умеет LHBM (оптический UDFPS на sun); из пакетов берём только HAL отпечатка |
+| 2026-09-26 | Датчики — AOSP multihal из исходников + стоковые sub-HAL; вибрация — QTI HAL из исходников; Glyph, FeliCa, DeviceExtras — не включены | Для первой загрузки — минимум непроверенного на metroid кода |
+| 2026-09-26 | AVB без `--flags 3` (FroggerPro отключал проверку) | Иначе libavb не передаёт `androidboot.vbmeta.*` (урок OnePlus: HAL отпечатка читает `device_state`) и закрыт путь к `avb_custom_key` |
 
 ## Выбор базы device-дерева и ядра
 

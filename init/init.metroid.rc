@@ -1,0 +1,74 @@
+#
+# SPDX-FileCopyrightText: The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+#
+
+on init
+    # Property used for sku specific sysconfig and permissions
+    setprop ro.boot.product.hardware.sku ${ro.boot.hardware.sku}
+
+on post-fs-data
+    mkdir /data/vendor/camera 0775 camera camera
+
+    copy  /mnt/vendor/persist/camera/bokeh_caldata_uw_persist.bin /data/vendor/camera/bokeh_caldata_uw_persist.bin
+    chmod 0444 /data/vendor/camera/bokeh_caldata_uw_persist.bin
+    chown cameraserver audio /data/vendor/camera/bokeh_caldata_uw_persist.bin
+
+    copy /mnt/vendor/persist/camera/bokeh_caldata_tele_persist.bin /data/vendor/camera/bokeh_caldata_tele_persist.bin
+    chmod 0444 /data/vendor/camera/bokeh_caldata_tele_persist.bin
+    chown cameraserver audio /data/vendor/camera/bokeh_caldata_tele_persist.bin
+
+    copy /vendor/etc/camera/bokeh_caldata_uw_golden.bin /data/vendor/camera/bokeh_caldata_uw_golden.bin
+    chmod 0444 /data/vendor/camera/bokeh_caldata_uw_golden.bin
+    chown cameraserver audio /data/vendor/camera/bokeh_caldata_uw_golden.bin
+
+    copy /vendor/etc/camera/bokeh_caldata_tele_golden.bin /data/vendor/camera/bokeh_caldata_tele_golden.bin
+    chmod 0444 /data/vendor/camera/bokeh_caldata_tele_golden.bin
+    chown cameraserver audio /data/vendor/camera/bokeh_caldata_tele_golden.bin
+
+on property:vendor.all.modules.ready=1
+    chown system system /sys/panel_feature/fp_status
+
+# Sensors
+    chown system system /proc/touchpanel/gesture_code
+    chown system system /sys/devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/880000.spi/spi_master/spi8/spi8.0/fts_gesture_single_tap_enabled
+    chown system system /sys/devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/880000.spi/spi_master/spi8/spi8.0/fts_gesture_single_tap_pressed
+    chown system system /sys/devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/880000.spi/spi_master/spi8/spi8.0/fts_fod_enabled
+    chown system system /sys/devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/880000.spi/spi_master/spi8/spi8.0/fts_fod_pressed
+
+# Sltntc
+service sltntc /system_ext/bin/sltntc
+	class hal
+	user system
+	group system readproc root
+	disabled
+
+on property:sys.boot_completed=1 && property:persist.sys.sltntc.enable=0
+	stop sltntc
+
+on property:sys.boot_completed=1 && property:persist.sys.sltntc.enable=1
+	start sltntc
+
+on boot
+    chown system system /sys/devices/virtual/virtual_temp/shell/data
+
+# NtChg    
+on property:sys.boot_completed=1
+    chown system system /sys/class/qcom-battery/usb_real_type
+    restorecon /sys/class/qcom-battery/usb_real_type
+
+# Offline charging (NtChg)
+on charger
+    start vendor.charge-default-poweroff
+
+service vendor.charge-default-poweroff /vendor/bin/hw/vendor.noth.hardware.charge-service
+    class core
+    group system
+    disabled
+
+on property:sys.boot_completed=1
+ # Enable PowerHAL hint processing
+    setprop vendor.powerhal.init 1
+
+# ZRAM 
+    swapon_all /odm/etc/fstab.zram.4g   

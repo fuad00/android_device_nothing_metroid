@@ -1,0 +1,4 @@
+runtime_resource_overlay {
+    name: "MetroidEuiccOverlay",
+    device_specific: true,
+}
