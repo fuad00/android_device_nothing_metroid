@@ -61,13 +61,24 @@ replace_modules() {  # <modules dir>
     done
 }
 
+# The base image's AVB properties must be carried over: the bootloader hands
+# com.android.build.boot.security_patch to KeyMint as the boot patch level, and without it
+# KeyMint refuses every key made before (vold: decryptWithKeystoreKey failed ->
+# init_user0_failed).
+avb_props() {  # <image> -> --prop k:v ...
+    "$T/avbtool" info_image --image "$1" |
+        sed -n "s/^ *Prop: \(.*\) -> '\(.*\)'\$/--prop\n\1:\2/p"
+}
+
 echo ":: boot"
+mapfile -t props < <(avb_props "$BASE/boot.img")
 mapfile -t args < <(xargs -n1 <<< "$("$T/unpack_bootimg" --boot_img "$BASE/boot.img" --out "$WORK/boot" --format mkbootimg)")
 for i in "${!args[@]}"; do [[ "${args[$i]}" == --kernel ]] && args[$((i + 1))]="$STAGE/Image"; done
 "$T/mkbootimg" "${args[@]}" --output "$OUT/boot.img"
 "$T/avbtool" add_hash_footer --image "$OUT/boot.img" --partition_name boot \
     --partition_size "$(stat -c%s "$BASE/boot.img")" --key "$TESTKEY" --algorithm SHA256_RSA4096 \
-    --rollback_index "$("$T/avbtool" info_image --image "$BASE/boot.img" | awk '/Rollback Index:/{print $3; exit}')"
+    --rollback_index "$("$T/avbtool" info_image --image "$BASE/boot.img" | awk '/Rollback Index:/{print $3; exit}')" \
+    "${props[@]}"
 
 echo ":: vendor_boot"
 mapfile -t args < <(xargs -n1 <<< "$("$T/unpack_bootimg" --boot_img "$BASE/vendor_boot.img" --out "$WORK/vboot" --format mkbootimg)")
@@ -86,8 +97,9 @@ replace_modules "$R/lib/modules"
 regen_depmod "$R/lib/modules" /lib/modules
 (cd "$R" && find . | LC_ALL=C sort | cpio -o -H newc -R 0:0 --quiet | lz4 -l -12 --favor-decSpeed > "$WORK/vramdisk.lz4")
 "$T/mkbootimg" "${args[@]}" --vendor_boot "$OUT/vendor_boot.img"
+mapfile -t props < <(avb_props "$BASE/vendor_boot.img")
 "$T/avbtool" add_hash_footer --image "$OUT/vendor_boot.img" --partition_name vendor_boot \
-    --partition_size "$(stat -c%s "$BASE/vendor_boot.img")"
+    --partition_size "$(stat -c%s "$BASE/vendor_boot.img")" "${props[@]}"
 
 dlkm() {  # <name> <prefix> <with-gki: yes|""> [modules to drop]
     local name="$1" prefix="$2" with_gki="$3"; shift 3
