@@ -32,7 +32,14 @@ meta/scripts/stock-ota-update.sh $S ~/Downloads/nothing_phone_3/stock/B4.1-26081
 проверяет сам телефон. После «UPDATED_NEED_REBOOT» — `adb -s $S reboot`. Если новый слот не загрузится,
 загрузчик после исчерпания попыток вернётся в старый.
 
-## 3. Первая установка LineageOS (слот b остаётся стоковым)
+## 3. Первая установка LineageOS
+
+> **Не работает как задумано (26.09.2026):** на Virtual A/B sideload из recovery забирает весь `super`, логические
+> разделы другого слота перезаписываются — «стоковый слот для отката» после этого не загружается. Не рассчитывать на
+> откат в другой слот; откат — стоковыми образами (fastboot + fastbootd) или рабочей сборкой logix727 (раздел 4).
+> Не использовать `adb reboot sideload` (см. porting-log). Форматирование — `fastboot -w` из bootloader.
+
+### (исходный вариант, v1)
 
 Исходное состояние: слот b — сток B4.1 (активный), слот a — старый V3.5. Идея: в слот b пишется только
 наш `recovery` (загрузка системы из b от него не зависит), zip ставится в **неактивный слот a**. Если
@@ -57,6 +64,19 @@ LineageOS в a не загрузится, загрузчик после исче
 7. Если a не грузится: загрузчик сам вернётся в b после 7 попыток; вручную — bootloader и
    `fastboot -s $S set_active b`.
 8. После стабильной загрузки — второй слот: recovery → Apply from ADB ещё раз (ставит в b).
+
+## 4. Рабочая система на время отладки: сборка logix727
+
+Образы bootstrap извлекаются из `payload.bin` их zip (на сервере `/root/nothing_phone_3/logix727/img/`, на маке
+`~/Downloads/nothing_phone_3/logix727/bootstrap/`, sha256 в `SHA256SUMS`):
+
+```bash
+for p in boot init_boot vendor_boot dtbo recovery pvmfw vbmeta vbmeta_system vbmeta_vendor; do
+  for s in a b; do fastboot -s $S flash ${p}_$s $p.img; done; done   # --slot=all на этом ABL сбоит после 1-го раздела
+fastboot -s $S -w
+fastboot -s $S reboot recovery    # их recovery: кнопки работают; Apply update → Apply from ADB
+adb -s $S sideload lineage-23.0-20260902-UNOFFICIAL-metroid.zip   # «additional packages» → Yes → Reboot system
+```
 
 ## Откат
 
