@@ -625,6 +625,7 @@ system_ext/lib64/libmink-sock-native-api.so
 system_ext/lib64/libminkipcbinder_system.so
 system_ext/lib64/libminksocket_system.so
 system_ext/lib64/libmiracastsystem.so
+system/lib64/libmdnssd.so:system_ext/lib64/libmdnssd.so;MODULE_SUFFIX=_stock
 system_ext/lib64/libmmQSM.so
 system_ext/lib64/libmmhttpstack.so
 system_ext/lib64/libmmiipstreammmihttp.so

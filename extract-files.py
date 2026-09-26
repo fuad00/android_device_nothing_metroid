@@ -22,6 +22,10 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
     return f'{lib}_{partition}' if partition == 'vendor' else None
 
 
+def lib_fixup_stock_suffix(lib: str, *args, **kwargs):
+    return f'{lib}_stock'
+
+
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     (
@@ -29,6 +33,8 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.qti.qccsyshal_aidl-V1-ndk',
         'vendor.qti.qccvndhal_aidl-V1-ndk',
     ): lib_fixup_vendor_suffix,
+    # Only adb/minadbd may link the AOSP libmdnssd; libmiracastsystem gets stock's copy
+    'libmdnssd': lib_fixup_stock_suffix,
 }
 
 namespace_imports = [
