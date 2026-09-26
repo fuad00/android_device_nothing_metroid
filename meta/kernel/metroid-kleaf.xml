@@ -67,21 +67,21 @@
 
   <project name="platform/prebuilts/bazel/linux-x86_64"
            path="prebuilts/bazel/linux-x86_64" remote="aosp"
-           revision="5c92123af5646d469fc53ef61994f5bca0306f66" />
+           revision="5c92123af5646d469fc53ef61994f5bca0306f66" clone-depth="1" />
   <project name="platform/prebuilts/build-tools" path="prebuilts/build-tools"
-           remote="aosp" revision="bfa65e7422cc88dc64ef3ca224daf214a77fb4d5" />
+           remote="aosp" revision="bfa65e7422cc88dc64ef3ca224daf214a77fb4d5" clone-depth="1" />
   <project name="kernel/prebuilts/build-tools" path="prebuilts/kernel-build-tools"
-           remote="aosp" revision="b46264b70e3cdf70d08c9ae2df6ea3002b242ebc" />
+           remote="aosp" revision="b46264b70e3cdf70d08c9ae2df6ea3002b242ebc" clone-depth="1" />
   <project name="platform/prebuilts/clang/host/linux-x86"
            path="prebuilts/clang/host/linux-x86" remote="aosp"
-           revision="62dc563017359bca29c4a08f5f27d8ecae763462" />
+           revision="62dc563017359bca29c4a08f5f27d8ecae763462" clone-depth="1" />
   <project name="platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8"
            path="prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8"
-           remote="aosp" revision="ed661b61b5f6d657500fc97d485edd35b2cb3c7f" />
+           remote="aosp" revision="ed661b61b5f6d657500fc97d485edd35b2cb3c7f" clone-depth="1" />
   <project name="platform/prebuilts/jdk/jdk11" path="prebuilts/jdk/jdk11"
-           remote="aosp" revision="c6c90521b7c317f13d41bbd9336a8d45ee202cec" />
+           remote="aosp" revision="c6c90521b7c317f13d41bbd9336a8d45ee202cec" clone-depth="1" />
   <project name="toolchain/prebuilts/ndk/r26" path="prebuilts/ndk-r26"
-           remote="aosp" revision="abad5cbde7eb9684e37d7569810743a8a34826af" />
+           remote="aosp" revision="abad5cbde7eb9684e37d7569810743a8a34826af" clone-depth="1" />
   <project name="platform/system/tools/mkbootimg" path="tools/mkbootimg"
            remote="aosp" revision="f5c284e8998dd8a085cf027bb518b6c2b84cf744" />
 </manifest>
