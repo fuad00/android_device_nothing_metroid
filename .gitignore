@@ -1,0 +1,7 @@
+# Never commit phone dumps (IMEI/EFS/persist), stock images or build outputs
+*.img
+*.bin
+*.zip
+*.7z*
+device_dumps/
+.DS_Store
