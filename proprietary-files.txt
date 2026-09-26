@@ -36,10 +36,6 @@ vendor/app/IWlanService/IWlanService.apk;PRESIGNED
 
 system_ext/apex/com.android.compos.apex
 system_ext/apex/com.android.vndk.v34.apex
-system_ext/etc/aconfig/flag.info
-system_ext/etc/aconfig/flag.map
-system_ext/etc/aconfig/flag.val
-system_ext/etc/aconfig/package.map
 system_ext/etc/default-permissions/default-permissions-com.quicinc.voice.activation.xml
 system_ext/etc/dpm/dpm.conf
 system_ext/etc/hdr_config/ans_off/ans_config.txt
@@ -166,7 +162,6 @@ system_ext/etc/sysconfig/whitelist_com.qualcomm.qti.uceShimService.xml
 system_ext/etc/system_perfetto.cfg
 system_ext/etc/wfdconfigsink.xml
 system_ext/etc/wmshell.protolog.json.gz
-system_ext/etc/wmshell.protolog.pb
 system_ext/framework/ActivityExt.jar
 system_ext/framework/ActivityExt.jar.fsv_meta
 system_ext/framework/SatelliteClient.jar
@@ -1120,7 +1115,6 @@ vendor/etc/acdbdata/nn_vad_models/fai__3.0.0_0.0__eai_4.2_enpuv5.pmd
 vendor/etc/acdbdata/nn_vad_models/fai__3.0.0_0.0__eai_4.6_enpuv5.pmd
 vendor/etc/acdbdata/tuna_qrd/QRD_tuna_acdb_cal.acdb
 vendor/etc/acdbdata/tuna_qrd/QRD_tuna_workspaceFileXml.qwsp
-vendor/etc/aconfig_flags.pb
 vendor/etc/advance_thermal_mitigation/atmc.json
 vendor/etc/advance_thermal_mitigation/atmc_ind.json
 vendor/etc/advance_thermal_mitigation/atmc_ind_win.json
