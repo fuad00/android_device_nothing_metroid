@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-HERE="$(cd "$(dirname "$0")" && pwd)"
-DEVICE="$(dirname "$HERE")"
-KERNEL="${1:-$DEVICE/../../../kernel/nothing/sm8735}"
-OUTPUT="${2:-$DEVICE/prebuilt/kernel-headers.tar.gz}"
-EXPECTED_KERNEL="ce342da8315a62e6144882faeddbdeccda544f9b"
-
-[[ "$(git -C "$KERNEL" rev-parse HEAD)" == "$EXPECTED_KERNEL" ]] || {
-    echo "Kernel must be at $EXPECTED_KERNEL" >&2
-    exit 1
-}
+# Collect the techpack UAPI headers the vendor HALs build against into a tarball
+# (TARGET_PREBUILT_KERNEL_HEADERS). From logix727's kernel/generate-kernel-headers.sh; the
+# kernel commit pin is dropped because stage-kernel.sh records the commit in build-info.txt.
+#   generate-kernel-headers.sh <msm-kernel source> <output.tar.gz>
+KERNEL="${1:?msm-kernel source dir}"
+OUTPUT="${2:?output tarball}"
 
 stage="$(mktemp -d)"
 trap 'rm -rf "$stage"' EXIT

@@ -139,20 +139,15 @@ BOARD_BOOTCONFIG := \
 
 # Kernel
 #
-# The GKI Image is a genuine Google prebuilt (6.6.102-android15-8, ab14350911), which the charter
-# permits for GKI devices. EVERYTHING else — 311 of the 313 vendor_dlkm modules, the whole
-# vendor_boot ramdisk module set, dtb.img and dtbo.img — is generated from the Nothing GPL kernel
-# source by kernel/stage_kernel_artifacts.sh into kernel/out/ (gitignored). See kernel/gki/README.md
-# for why the GKI modules stay prebuilt, and kernel/prebuilt-modules/README.md for the 2 ST NFC
-# modules Nothing has not published. Source tree is upstream/kernel_nothingoss_b16 (NOT
-# kernel_nothingoss — that one is 6.6.57 and its modules are rejected at first stage).
-#
-# kernel/out/ must exist before a build: run kernel/stage_kernel_artifacts.sh first.
+# Everything kernel-side is built from source: the GKI Image (AOSP kernel/common), every
+# vendor/system module, dtb.img, dtbo.img and the techpack UAPI headers come from the Kleaf
+# workspace described in meta/kernel/ (build-kernel.sh), staged into kernel/out/ by
+# meta/kernel/stage-kernel.sh. kernel/out/ is generated and never committed.
 TARGET_KERNEL_VERSION := 6.6
 TARGET_FORCE_PREBUILT_KERNEL := true
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/kernel/gki/Image
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/kernel/out/Image
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/kernel/out/dtb.img
-TARGET_PREBUILT_KERNEL_HEADERS := $(DEVICE_PATH)/prebuilt/kernel-headers.tar.gz
+TARGET_PREBUILT_KERNEL_HEADERS := $(DEVICE_PATH)/kernel/out/kernel-headers.tar.gz
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/kernel/out/dtbo.img
 
 # vendor_boot and init_boot are BUILT, not pinned. The prebuilt pins that used to live here

@@ -15,10 +15,9 @@
 # avoids the build's depmod re-processing so the exact stock module set + load order
 # is preserved. /vendor/lib/modules already symlinks to /vendor_dlkm/lib/modules.
 
-# 2026-07-28: this used to point at device/nothing/metroid-kernel — 309 MB of loose binaries
-# checked in beside the device tree, not a git repo, not reproducible. It now points at the
-# output of kernel/stage_kernel_artifacts.sh, which builds 311 of the 313 modules from the
-# Nothing GPL kernel source. Run that script before building; kernel/out/ is gitignored.
+# kernel/out/ is produced by meta/kernel/stage-kernel.sh from the source-built kernel: vendor_dlkm
+# carries the stock module set with regenerated metadata, system_dlkm the GKI modules signed by
+# the same build as the Image.
 METROID_KERNEL_DIR := $(LOCAL_PATH)/kernel/out
 
 PRODUCT_COPY_FILES += \

@@ -7,7 +7,7 @@
 #   make-test-images.sh <base-image-dir> [stage-dir] [out-dir]
 set -euo pipefail
 BASE="$(cd "${1:?base image dir (boot.img vendor_boot.img vendor_dlkm.img system_dlkm.img)}" && pwd)"
-STAGE="${2:-/root/nothing_phone_3/kernel-out}"
+STAGE="${2:-$(cd "$(dirname "$0")/../.." && pwd)/kernel/out}"
 OUT="${3:-/root/nothing_phone_3/test-images}"
 LINEAGE="${LINEAGE:-/root/oneplus_10_pro_lineage/lineage}"
 T="$LINEAGE/out/host/linux-x86/bin"
@@ -17,8 +17,8 @@ WORK="$OUT/work"
 rm -rf "$OUT" && mkdir -p "$WORK"
 
 module_src() {  # <name.ko> -> path of our build of it
-    if [[ -f "$STAGE/gki/$1" ]]; then echo "$STAGE/gki/$1"
-    elif [[ -f "$STAGE/vendor/$1" ]]; then echo "$STAGE/vendor/$1"
+    if [[ -f "$STAGE/all/gki/$1" ]]; then echo "$STAGE/all/gki/$1"
+    elif [[ -f "$STAGE/all/vendor/$1" ]]; then echo "$STAGE/all/vendor/$1"
     else return 1; fi
 }
 
@@ -33,7 +33,7 @@ regen_depmod() {  # <dir> <prefix> [with-gki]
     tmp="$(mktemp -d)"
     mkdir -p "$tmp/lib/modules/0.0"
     cp "$dir"/*.ko "$tmp/lib/modules/0.0/"
-    [[ -z "$with_gki" ]] || cp -n "$STAGE"/gki/*.ko "$tmp/lib/modules/0.0/"
+    [[ -z "$with_gki" ]] || cp -n "$STAGE"/all/gki/*.ko "$tmp/lib/modules/0.0/"
     depmod -b "$tmp" 0.0 2>/dev/null
     python3 - "$tmp/lib/modules/0.0" "$dir" "$prefix" <<'PY'
 import os, sys
