@@ -39,6 +39,9 @@ def stock_vendor_libs():
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     stock_vendor_libs(): lib_fixup_vendor_suffix,
+    # hardware/qcom-caf/wlan also has a wifihal_qcom_defaults named libwifi-hal-qcom; point
+    # stock users at the library itself
+    'libwifi-hal-qcom': lambda *args, **kwargs: '//hardware/qcom-caf/wlan/qcwcn:libwifi-hal-qcom',
 }
 
 namespace_imports = [
