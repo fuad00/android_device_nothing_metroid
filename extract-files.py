@@ -53,6 +53,10 @@ namespace_imports = [
 ]
 
 blob_fixups: blob_fixups_user_type = {
+    # Installed next to (not over) hardware/qcom-caf/thermal's module of the same name
+    'vendor/etc/init/android.hardware.thermal-service.qti-nothing.rc': blob_fixup()
+        .regex_replace('/vendor/bin/hw/android.hardware.thermal-service.qti\n',
+                       '/vendor/bin/hw/android.hardware.thermal-service.qti-nothing\n'),
     'vendor/etc/init/android.hardware.biometrics.face-service.noth.rc': blob_fixup()
         .regex_replace('    disabled\n    disabled\n', '    disabled\n')
         .regex_replace(

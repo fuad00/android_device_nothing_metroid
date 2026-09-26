@@ -200,7 +200,7 @@ PRODUCT_COPY_FILES += \
 # Stock Thermal HAL carries Nothing's shell_max mapping and thresholds. Its
 # userspace shell-temperature producer is packaged as sltntc by the private
 # extraction tree.
-PRODUCT_PACKAGES +=     android.hardware.thermal-service.qti.stock
+PRODUCT_PACKAGES +=     android.hardware.thermal-service.qti-nothing
 
 # Qualcomm subsystem property aggregation service. The source module owns its
 # stock-matching init and VINTF fragments; do not copy the proprietary RC alone.

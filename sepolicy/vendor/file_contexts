@@ -84,3 +84,6 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power\.stats-service    u:object_r:hal_power_stats_default_exec:s0
 /(vendor|system/vendor)/bin/ft_diag_test    u:object_r:vendor_ft_diag_test_exec:s0
 /(vendor|system/vendor)/bin/st_getcplc      u:object_r:hal_nfc_default_exec:s0
+
+# Stock (Nothing) thermal HAL, installed beside the qcom-caf build
+/vendor/bin/hw/android\.hardware\.thermal-service\.qti-nothing    u:object_r:hal_thermal_default_exec:s0
