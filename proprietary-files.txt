@@ -4047,7 +4047,7 @@ vendor/product/media/audio/alarms/07_fidget.ogg
 vendor/product/media/audio/alarms/08_saw.ogg
 vendor/product/media/audio/alarms/09_grains.ogg
 vendor/product/media/audio/alarms/10_shake.ogg
-vendor/product/media/audio/notifications/01_oi.ogg
+vendor/product/media/audio/notifications/01_oi!.ogg:vendor/product/media/audio/notifications/01_oi.ogg
 vendor/product/media/audio/notifications/02_swanny.ogg
 vendor/product/media/audio/notifications/03_doub.ogg
 vendor/product/media/audio/notifications/04_hum.ogg
