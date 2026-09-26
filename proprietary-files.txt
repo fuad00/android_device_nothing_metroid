@@ -3792,3 +3792,16 @@ vendor/product/media/audio/ui/camera_click.ogg
 vendor/product/media/audio/ui/camera_focus.ogg
 vendor/product/media/audio/ui/screenshot.ogg
 vendor/rfs/rfs_symlinks
+
+# Stock vendor HAL services (display, audio) replacing the qcom-caf source builds
+vendor/bin/hw/audiohalservice.qti
+vendor/bin/hw/vendor.qti.hardware.display.allocator-service
+vendor/bin/hw/vendor.qti.hardware.display.composer-service
+vendor/bin/hw/vendor.qti.hardware.display.demura-service
+vendor/etc/init/init.qti.display_boot.rc
+vendor/etc/init/vendor.qti.hardware.display.composer-service.rc
+vendor/etc/vintf/manifest/manifest_audiocorehal_default.xml
+vendor/etc/vintf/manifest/mapper.qti.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.display.allocator-service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.display.composer-service3_v3.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.display.demura-service.xml

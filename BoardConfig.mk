@@ -54,6 +54,10 @@ TARGET_USES_VULKAN := true
 
 # Board
 BOARD_USES_QCOM_HARDWARE := true
+# Stock vendor HAL stack: keep hardware/qcom-caf/sm8750 (audio, display, IPA sources) out of
+# PRODUCT_SOONG_NAMESPACES, the stock binaries in vendor/nothing/metroid replace them
+QCOM_SOONG_NAMESPACE := $(DEVICE_PATH)
+USE_DEVICE_SPECIFIC_DATA_IPA_CFG_MGR := true
 BOARD_NO_RADIOIMAGE := true
 
 # Allow prebuilt ELF .so blobs shipped via PRODUCT_COPY_FILES

@@ -193,8 +193,9 @@ PRODUCT_COPY_FILES += \
 # Build these from the same QCOM/AOSP sources onyx (same SoC, sun/sm8750) builds.
 # (Verified absent in proprietary-files.txt: bin/hw/{thermal,usb,usb.gadget,vibrator,wifi}-service, bin/vndservicemanager.)
 
-# Display HALs (b20): build from source (hardware/qcom-caf/sm8750/display is its own soong namespace)
-PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/sm8750/display
+# Display, audio and IPA HALs are the stock Nothing binaries (proprietary-files.txt), not the
+# hardware/qcom-caf/sm8750 sources: lineage-23.2 refuses a product that can install the same
+# module from two namespaces, and a source-built service over stock libraries is an ABI risk.
 
 # Stock Thermal HAL carries Nothing's shell_max mapping and thresholds. Its
 # userspace shell-temperature producer is packaged as sltntc by the private
@@ -225,9 +226,9 @@ PRODUCT_PACKAGES +=     vndservicemanager
 PRODUCT_PACKAGES +=     libxml2.vendor
 PRODUCT_PACKAGES +=     wpa_supplicant     wpa_cli \
                         android.hardware.wifi.hostapd-V2-ndk
-# Display HALs from source (b20): ~23s reset fix. Module names mirror onyx un_dt device.mk
-# (same SoC sun/sm8750); composer-service added (essential, buildable in sm8750/display tree).
-PRODUCT_PACKAGES +=     vendor.qti.hardware.display.composer-service     vendor.qti.hardware.display.allocator-service     vendor.qti.hardware.display.demura-service     vendor.qti.hardware.display.snapalloc-impl     android.hardware.graphics.mapper@4.0-impl-qti-display     android.hardware.graphics.composer3-V3-ndk.vendor     vendor.qti.hardware.display.composer3-V1-ndk.vendor     vendor.qti.hardware.display.config-V12-ndk.vendor     vendor.qti.hardware.display.aiqe-V2-ndk.vendor
+# Display HAL services come from stock (the ~23s reset was these services missing entirely).
+# Their AIDL interface libraries are built from source.
+PRODUCT_PACKAGES +=     android.hardware.graphics.composer3-V3-ndk.vendor     vendor.qti.hardware.display.composer3-V1-ndk.vendor     vendor.qti.hardware.display.config-V12-ndk.vendor     vendor.qti.hardware.display.aiqe-V2-ndk.vendor
 
 # Boot control HAL from source (b20): mirror onyx device.mk
 PRODUCT_PACKAGES +=     android.hardware.boot-service.qti     android.hardware.boot-service.qti.recovery \
@@ -347,8 +348,9 @@ PRODUCT_SYSTEM_PROPERTIES += \
 # DO NOT comment this out again: manifest_audiocorehal_default.xml (a vintf_fragment of
 # libaudiocorehal.default.so) declares android.hardware.audio.core with no server without it,
 # and the failure only shows up once the prebuilt-vendor pin is gone. 2026-07-24.
+# The service and libaudiocorehal.default are stock now (proprietary-files.txt); the core HAL
+# VINTF fragment comes with them.
 PRODUCT_PACKAGES += \
-    audiohalservice.qti \
     qtiaudiohalvendorextn
 
 DEVICE_PACKAGE_OVERLAYS += device/nothing/metroid/overlay
