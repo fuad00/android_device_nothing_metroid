@@ -53,6 +53,9 @@ namespace_imports = [
 ]
 
 blob_fixups: blob_fixups_user_type = {
+    # Declared as XML 2.0; the build parses permission files and accepts only XML 1.0
+    'system_ext/etc/permissions/vendor.qti.hardware.c2pa-V1-java.xml': blob_fixup()
+        .regex_replace('<\\?xml version="2.0"', '<?xml version="1.0"'),
     # Installed next to (not over) hardware/qcom-caf/thermal's module of the same name
     'vendor/etc/init/android.hardware.thermal-service.qti-nothing.rc': blob_fixup()
         .regex_replace('/vendor/bin/hw/android.hardware.thermal-service.qti\n',
