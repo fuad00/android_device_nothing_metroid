@@ -56,6 +56,9 @@ namespace_imports = [
 ]
 
 blob_fixups: blob_fixups_user_type = {
+    # The satellite (NTN) proto library was built against the stock protobuf; give it that copy
+    'system_ext/lib64/libQmsNtnProto.so': blob_fixup()
+        .replace_needed('libprotobuf-cpp-lite.so', 'libprotobuf-cpp-lite-stock.so'),
     # Declared as XML 2.0; the build parses permission files and accepts only XML 1.0
     'system_ext/etc/permissions/vendor.qti.hardware.c2pa-V1-java.xml': blob_fixup()
         .regex_replace('<\\?xml version="2.0"', '<?xml version="1.0"'),
