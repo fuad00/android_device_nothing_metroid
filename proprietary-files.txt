@@ -847,7 +847,7 @@ vendor/bin/hw/android.hardware.power.stats-service
 vendor/bin/hw/android.hardware.secure_element-service.qti
 vendor/bin/hw/android.hardware.security.keymint-service-qti
 vendor/bin/hw/android.hardware.security.keymint-service-spu-qti
-vendor/bin/hw/android.hardware.security.keymint-service.strongbox-thales
+vendor/bin/hw/android.hardware.security.keymint-service.strongbox-thales;DISABLE_DEPS
 vendor/bin/hw/android.hardware.weaver-service-spu-qti
 vendor/bin/hw/android.hardware.weaver-service.thales
 vendor/bin/hw/hostapd
@@ -3300,7 +3300,7 @@ vendor/lib64/libsoc_helper.so
 vendor/lib64/libsoc_helper_jni.so
 vendor/lib64/libspcom.so
 vendor/lib64/libspl.so
-vendor/lib64/libspukeymint.so
+vendor/lib64/libspukeymint.so;DISABLE_DEPS
 vendor/lib64/libspukeymintdeviceutils.so
 vendor/lib64/libspukeymintprovision.so
 vendor/lib64/libspukeymintutils.so
@@ -3482,7 +3482,7 @@ vendor/lib64/sensors.qsh.so
 vendor/lib64/soundfx/libAACeffect_NTaidl.so
 vendor/lib64/soundfx/libqcompostprocbundle.so
 vendor/lib64/soundfx/libqcomvisualizer.so
-vendor/lib64/soundfx/libqcomvoiceprocessing.so
+vendor/lib64/soundfx/libqcomvoiceprocessing.so;DISABLE_DEPS
 vendor/lib64/soundfx/libquasar.so
 vendor/lib64/soundfx/libvolumelistener.so
 vendor/lib64/vendor.aac.hardware.richtap.vibrator-V1-ndk_platform.so
@@ -3757,3 +3757,6 @@ vendor/lib64/android.hardware.common-V2-ndk_platform.so
 # No vendor variant in source (system-only liblogwrap): the stock copy stays
 vendor/lib64/liblogwrap.so;MODULE_SUFFIX=_vendor
 
+# sharedsecret V2 is an unfrozen development version in source (interface marked frozen), so
+# the stock copy is installed as a plain file for libspukeymint
+vendor/lib64/android.hardware.security.sharedsecret-V2-ndk.so;MAKE_COPY_RULE_ONLY
