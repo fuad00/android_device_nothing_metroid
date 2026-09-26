@@ -194,3 +194,5 @@ vendor/lib64/libaconfig_storage_read_api_cc.so
 vendor/lib64/libc++.so
 vendor/lib64/soundfx/libhapticgenerator.so
 vendor/lib64/libsensorndkbridge.so
+vendor/lib64/libkeystore-engine-wifi-hidl.so
+vendor/lib64/libkeystore-wifi-hidl.so
