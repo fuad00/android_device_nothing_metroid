@@ -354,9 +354,8 @@ PRODUCT_PRECOMPILED_SEPOLICY := false
 #     Magicball \
 #     Leveler
 
-# Glyph sysconfig XML (privapp-permissions xml already copied by metroid-vendor.mk).
-PRODUCT_COPY_FILES += \
-    vendor/nothing/metroid/glyph/etc/sysconfig/com.nothing.glyphnotification.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/com.nothing.glyphnotification.xml
+# The Glyph apps are not installed yet (see above), so their sysconfig XML, which lived in
+# logix727's private vendor tree (vendor/nothing/metroid/glyph), is not copied either.
 
 # OPUS bring-up: EARLY (system build.prop, before zygote) props — /vendor/build.prop loads too late here.
 # ro.hw_timeout_multiplier=4 -> framework Watchdog 60s*4=240s to survive the slow imageless first boot
