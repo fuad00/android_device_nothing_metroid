@@ -3768,3 +3768,31 @@ vendor/etc/wifi/wcn7750/WCNSS_qcom_cfg.ini:vendor/firmware/wlan/qca_cld/wcn7750/
 
 # Stock TFLite with the XNNPack delegate, for the voice activation libraries built against it
 vendor/lib64/libtensorflowlite_c.so:vendor/lib64/libtensorflowlite_c-stock.so;FIX_SONAME
+
+# VINTF declarations of the stock HAL services (stock carries them as fragments). The stock
+# wifi.supplicant fragment is not taken: its vendor interfaces belong to the stock supplicant.
+vendor/etc/vintf/manifest/android.hardware.thermal-service.qti.xml:vendor/etc/vintf/manifest/android.hardware.thermal-service.qti-nothing.xml
+vendor/etc/vintf/manifest/bluetooth-finder.xml
+vendor/etc/vintf/manifest/bt_lmp_event-saidl.xml
+vendor/etc/vintf/manifest/bttpi-saidl.xml
+vendor/etc/vintf/manifest/fm_hci.xml
+vendor/etc/vintf/manifest/qasr_vintf.xml
+vendor/etc/vintf/manifest/soundtrigger.qti.xml
+vendor/etc/vintf/manifest/vendor.noth.hardware.sensor.sensor_extension-service.xml
+vendor/etc/vintf/manifest/vendor.noth.hardware.stability-service.xml
+vendor/etc/vintf/manifest/vendor.qti.diag.hal.service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.alarm.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.c2pa-aidl-service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.capabilityconfigstore-service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.embmssl.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.hexlp-service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.power.powermodule.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.qconfig-service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.secureprocessor.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.servicetrackeraidl-service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.tetheroffload.service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.vpp-service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.wifi.wifilearner-service.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.wifidisplaysession-service.xml
+vendor/etc/vintf/manifest/vendor.qti.syshealthmon-service.xml
+vendor/etc/vintf/manifest/manifest_audio_qti_services.xml

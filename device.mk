@@ -331,6 +331,9 @@ PRODUCT_PACKAGES += hal_batch1.metroid.xml hal_batch2.metroid.xml hal_batch3.met
 PRODUCT_PACKAGES += android.hardware.radio.config.metroid4.xml android.hardware.radio.data.metroid4.xml android.hardware.radio.messaging.metroid4.xml android.hardware.radio.modem.metroid4.xml android.hardware.radio.network.metroid4.xml android.hardware.radio.sim.metroid4.xml android.hardware.radio.voice.metroid4.xml
 PRODUCT_PACKAGES += qti_radio_extensions.metroid.xml android.hardware.power.metroid.xml
 PRODUCT_PACKAGES += vendor.noth.hardware.charge.metroid.xml
+# Audio effect factory declaration (the stock effect HAL has no fragment of its own; the AGM/PAL
+# declarations come from the stock manifest_audio_qti_services.xml)
+PRODUCT_PACKAGES += audio_effects.metroid.xml
 PRODUCT_PACKAGES += ims-ext-common ims_ext_common.xml
 
 # Force copy missing proprietary files
