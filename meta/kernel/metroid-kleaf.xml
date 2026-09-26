@@ -14,6 +14,10 @@
   <!-- Nothing OS B4.1-260814-1733 kernel source (NothingOSS sm8735/b/mr) + our commits -->
   <project name="android_kernel_msm-6.6_nothing_sm8735.git" path="msm-kernel"
            remote="fuad00" revision="lineage-23.2" clone-depth="1" />
+  <!-- ST NFC (stm_nfc_i2c) and eSE (stm_st54se_gpio) drivers: not part of the NothingOSS
+       msm-kernel drop; only st/ is used here (see .bazelignore in setup-workspace.sh) -->
+  <project name="android_kernel_nothing_sm8735-modules.git" path="nothing-modules"
+           remote="fuad00" revision="lineage-23.2" clone-depth="1" />
   <!-- GKI common kernel the stock B4.1 Image was built from:
        6.6.127-android15-8-g1a9b880d342b-ab15218529 -->
   <project name="kernel/common" path="common" remote="aosp"

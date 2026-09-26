@@ -33,7 +33,7 @@ for name in msm_abl.bzl msm_common.bzl msm_dtc.bzl msm_kernel_16k_la.bzl msm_ker
   ln -sfn "../msm-kernel/$name" "$WS/build/$name"
 done
 ln -sfn "msm-kernel/vendor" "$WS/vendor"
-printf '%s\n' 'msm-kernel/vendor' > "$WS/.bazelignore"
+printf '%s\n' 'msm-kernel/vendor' 'nothing-modules/qcom' > "$WS/.bazelignore"
 
 # dtc: version header and parser sources that its Android.bp would normally generate
 printf '%s\n' '#define DTC_VERSION "DTC 1.7.0"' > "$WS/external/dtc/version_gen.h"
