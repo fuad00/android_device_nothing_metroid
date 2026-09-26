@@ -12,6 +12,7 @@
 | Память | DDR 12 ГБ, UFS: userdata 224 ГиБ, super 9 ГиБ |
 | Разделы | A/B, dynamic partitions, Virtual A/B (compression), `init_boot`, `vendor_boot` v4, `vbmeta_system`/`vbmeta_vendor` |
 | Загрузчик | `unlocked: yes`, `critical unlocked: no`, `secure: yes`, `fuse-state: PROD FUSE`; `fastboot boot` работает |
+| Device tree | SM8735 = Qualcomm **tuna** (семейство sun): стоковый загрузчик выбирает dtb `Tuna SoC` (msm-id `0x28f`, `dtb_idx=10` в V3.5) и overlay `Tuna QRD` (board-id `0xb`, `dtbo_idx=72`) — Nothing правит референсный QRD. В B4.1 dtbo — 127 overlay (`meta/scripts/dtinfo.py`) |
 | bootconfig стока | `dtb_idx=10`, `dtbo_idx=72`, `hwid_version=PVT`; UEFI передаёт в cmdline `haptic.uefi_f0`/`uefi_f0_calidata`; `erofs.reserved_pages=128` |
 
 Размеры разделов — `fastboot getvar all` (на маке `inventory/`).
