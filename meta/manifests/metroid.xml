@@ -7,7 +7,9 @@
 
   The kernel is not part of this tree: meta/kernel/ (own Kleaf manifest) builds it from source and
   stage-kernel.sh drops the result into device/nothing/metroid/kernel/out/.
-  Vendor blobs come from stock Nothing OS B4.1-260814-1733 (extract-files.py), private repo.
+  vendor/nothing/metroid is not a repository: it is generated from a stock Nothing OS
+  B4.1-260814-1733 dump with device/nothing/metroid/extract-files.py --allow-prohibited-files
+  (4.7 GB of Nothing/Qualcomm binaries that are not ours to publish).
 
   Platform forks carry logix727's lineage-23.0 carry series (android_device_nothing_metroid
   patches/), rebased onto lineage-23.2 as commits with their original authorship; each fork's
@@ -18,9 +20,6 @@
 
   <!-- Device (this monorepo: the tree is the repository root, docs and scripts are in meta/) -->
   <project path="device/nothing/metroid" name="nothing_phone_3_lineage" remote="fuad00-metroid" revision="main" />
-
-  <!-- Proprietary blobs (private) -->
-  <project path="vendor/nothing/metroid" name="proprietary_vendor_nothing_metroid" remote="fuad00-metroid" revision="lineage-23.2" />
 
   <!-- Platform forks -->
   <remove-project name="LineageOS/android_build" path="build/make" />
