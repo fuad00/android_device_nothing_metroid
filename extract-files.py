@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+import os
+
 from extract_utils.main import (
     ExtractUtils,
     ExtractUtilsModule,
@@ -26,13 +28,21 @@ def lib_fixup_stock_suffix(lib: str, *args, **kwargs):
     return f'{lib}_stock'
 
 
+def stock_vendor_libs():
+    # Libraries listed with MODULE_SUFFIX=_vendor: stock copies that coexist with a source
+    # module of the same name; vendor users must link the stock copy.
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'proprietary-files.txt')
+    names = []
+    for line in open(path):
+        line = line.split('#')[0].strip()
+        if 'MODULE_SUFFIX=_vendor' in line and line.split(';')[0].endswith('.so'):
+            names.append(os.path.basename(line.split(';')[0])[:-3])
+    return tuple(names)
+
+
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
-    (
-        'liblogwrap',
-        'vendor.qti.qccsyshal_aidl-V1-ndk',
-        'vendor.qti.qccvndhal_aidl-V1-ndk',
-    ): lib_fixup_vendor_suffix,
+    stock_vendor_libs(): lib_fixup_vendor_suffix,
     # Only adb/minadbd may link the AOSP libmdnssd; libmiracastsystem gets stock's copy
     'libmdnssd': lib_fixup_stock_suffix,
 }
