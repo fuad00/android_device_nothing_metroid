@@ -22,6 +22,9 @@
     <string name="pickup_sensor_type">android.sensor.tilt_detector</string>
     <string name="pocket_sensor_type"></string>
 
+    <!-- Focaltech touch driver gesture mode (TapToWake) -->
+    <string name="tap_to_wake_node" translatable="false">/sys/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a90000.spi/spi_master/spi4/spi4.0/fts_gesture_mode</string>
+
     <!-- Sensor trigger values -->
     <item name="pickup_sensor_value" format="float" type="dimen">1.0</item>
     <item name="pocket_sensor_value" format="float" type="dimen">0.0</item>
