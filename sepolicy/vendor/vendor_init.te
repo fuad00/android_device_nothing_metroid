@@ -1,0 +1,2 @@
+# init.metroid.rc hands the touch driver's gesture mode node to system (tap to wake)
+allow vendor_init sysfs_tap_to_wake:file { getattr setattr };

@@ -1,0 +1,6 @@
+# Device init additions on top of the stock vendor rc files
+
+on boot
+    # Tap to wake: MetroidDoze (uid system) turns the touch driver's gesture mode on and off
+    chown system system /sys/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a90000.spi/spi_master/spi4/spi4.0/fts_gesture_mode
+    chmod 0664 /sys/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a90000.spi/spi_master/spi4/spi4.0/fts_gesture_mode
