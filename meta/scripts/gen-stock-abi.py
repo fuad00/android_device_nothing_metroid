@@ -7,7 +7,8 @@
 #   gen-stock-abi.py <stock dump> <llvm-readelf>
 import os, re, subprocess, sys
 
-LIBS = ['libtinyxml2', 'libjsoncpp', 'libxml2', 'libchrome', 'libflatbuffers-cpp']
+LIBS = ['libtinyxml2', 'libjsoncpp', 'libxml2', 'libchrome', 'libflatbuffers-cpp',
+        'libaudioserviceexampleimpl']
 
 here = os.path.dirname(os.path.abspath(__file__))
 device = os.path.dirname(os.path.dirname(here))
@@ -18,18 +19,20 @@ for line in open(os.path.join(device, 'proprietary-files.txt')):
     line = line.split('#')[0].strip()
     if not line:
         continue
-    src = line.lstrip('-').split(';')[0].split(':')[0]
-    if src.startswith(('vendor/', 'system_ext/')) and '-stock.so' not in line:
-        files.append(src)
+    # read the stock file (src), key the result by the installed name (dst): blob fixups are
+    # looked up by dst, and the stock copies themselves link each other
+    src, _, dst = line.lstrip('-').split(';')[0].partition(':')
+    if src.startswith(('vendor/', 'system_ext/')):
+        files.append((dst or src, src))
 
 out = []
-for f in sorted(set(files)):
-    path = os.path.join(dump, f)
+for f, src in sorted(set(files)):
+    path = os.path.join(dump, src)
     if not os.path.isfile(path) or os.path.islink(path):
         continue
     dyn = subprocess.run([readelf, '-d', path], capture_output=True, text=True).stdout
     needed = set(re.findall(r'NEEDED.*\[([^\]]+)\.so\]', dyn))
-    libs = [l for l in LIBS if l in needed and os.path.basename(f) != l + '.so']
+    libs = [l for l in LIBS if l in needed and os.path.basename(src) != l + '.so']
     if libs:
         out.append(f + ' ' + ' '.join(libs))
 

@@ -3804,6 +3804,9 @@ vendor/lib64/libjsoncpp.so:vendor/lib64/libjsoncpp-stock.so;FIX_SONAME
 vendor/lib64/libxml2.so:vendor/lib64/libxml2-stock.so;FIX_SONAME
 vendor/lib64/libchrome.so:vendor/lib64/libchrome-stock.so;FIX_SONAME
 vendor/lib64/libflatbuffers-cpp.so:vendor/lib64/libflatbuffers-cpp-stock.so;FIX_SONAME
+# The audio HALs (libaudiocorehal.qti and friends) subclass this library's classes; its
+# dependencies are installed from source by device.mk
+vendor/lib64/libaudioserviceexampleimpl.so:vendor/lib64/libaudioserviceexampleimpl-stock.so;FIX_SONAME;DISABLE_DEPS
 system/lib64/libtinyxml2.so:system_ext/lib64/libtinyxml2-stock.so;FIX_SONAME;MODULE_SUFFIX=_system_ext
 system/lib64/libjsoncpp.so:system_ext/lib64/libjsoncpp-stock.so;FIX_SONAME;MODULE_SUFFIX=_system_ext
 system/lib64/libxml2.so:system_ext/lib64/libxml2-stock.so;FIX_SONAME;MODULE_SUFFIX=_system_ext;DISABLE_DEPS

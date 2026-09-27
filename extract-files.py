@@ -36,7 +36,14 @@ def stock_vendor_libs():
     return tuple(names)
 
 
-STOCK_ABI_LIBS = ('libtinyxml2', 'libjsoncpp', 'libxml2', 'libchrome', 'libflatbuffers-cpp')
+STOCK_ABI_LIBS = (
+    'libtinyxml2',
+    'libjsoncpp',
+    'libxml2',
+    'libchrome',
+    'libflatbuffers-cpp',
+    'libaudioserviceexampleimpl',
+)
 
 
 def stock_abi_users():
