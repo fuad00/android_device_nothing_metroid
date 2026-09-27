@@ -10,6 +10,8 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.hardware.TriggerEvent
+import android.hardware.TriggerEventListener
 import android.os.PowerManager
 import android.os.SystemClock
 import android.util.Log
@@ -30,14 +32,27 @@ class PickupSensor(
     private val executorService = Executors.newSingleThreadExecutor()
     private var entryTimestamp = 0L
 
-    override fun onSensorChanged(event: SensorEvent) {
-        if (DEBUG) Log.d(TAG, "Got sensor event: ${event.values[0]}")
+    // One-shot sensors (QTI motion_detect) cannot be registered as listeners: they deliver a
+    // single trigger event and are then disarmed, so re-arm after every trigger
+    private val oneShot = sensor?.reportingMode == Sensor.REPORTING_MODE_ONE_SHOT
+    private val triggerListener =
+        object : TriggerEventListener() {
+            override fun onTrigger(event: TriggerEvent) {
+                handle(event.values[0])
+                sensorManager.requestTriggerSensor(this, sensor)
+            }
+        }
+
+    override fun onSensorChanged(event: SensorEvent) = handle(event.values[0])
+
+    private fun handle(value: Float) {
+        if (DEBUG) Log.d(TAG, "Got sensor event: $value")
         val delta = SystemClock.elapsedRealtime() - entryTimestamp
         if (delta < MIN_PULSE_INTERVAL_MS) {
             return
         }
         entryTimestamp = SystemClock.elapsedRealtime()
-        if (event.values[0] == sensorValue) {
+        if (value == sensorValue) {
             if (Utils.isPickUpSetToWake(context)) {
                 wakeLock.acquire(WAKELOCK_TIMEOUT_MS)
                 powerManager.wakeUpWithProximityCheck(
@@ -59,7 +74,11 @@ class PickupSensor(
             Log.d(TAG, "Enabling")
             executorService.submit {
                 entryTimestamp = SystemClock.elapsedRealtime()
-                sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+                if (oneShot) {
+                    sensorManager.requestTriggerSensor(triggerListener, sensor)
+                } else {
+                    sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+                }
             }
         }
     }
@@ -67,7 +86,13 @@ class PickupSensor(
     fun disable() {
         if (sensor != null) {
             Log.d(TAG, "Disabling")
-            executorService.submit { sensorManager.unregisterListener(this, sensor) }
+            executorService.submit {
+                if (oneShot) {
+                    sensorManager.cancelTriggerSensor(triggerListener, sensor)
+                } else {
+                    sensorManager.unregisterListener(this, sensor)
+                }
+            }
         }
     }
 

@@ -107,6 +107,9 @@ object Utils {
     }
 
     fun getSensor(sm: SensorManager, type: String?): Sensor? {
-        return sm.getSensorList(Sensor.TYPE_ALL).find { it.stringType == type }
+        // Prefer the wake-up variant: a non-wake-up sensor sleeps with the SoC while the screen
+        // is off (QTI lists motion_detect before motion_detect_wakeup)
+        val sensors = sm.getSensorList(Sensor.TYPE_ALL).filter { it.stringType == type }
+        return sensors.find { it.isWakeUpSensor } ?: sensors.firstOrNull()
     }
 }
