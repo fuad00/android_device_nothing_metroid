@@ -24,7 +24,8 @@ for p in parts:
                         continue
             except OSError:
                 continue
-            if not os.path.relpath(path, O).startswith(SKIP):
+            # QNN HTP skeletons (lib*Skel.so) are DSP objects wherever they are installed
+            if not os.path.relpath(path, O).startswith(SKIP) and not f.lower().endswith("skel.so"):
                 elfs.append(path)
 
 miss = collections.defaultdict(list)
