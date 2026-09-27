@@ -4,8 +4,11 @@
 #   ZIP_ONLY=1 release.sh ...   skip the separate images (they are inside the zip payload anyway)
 #   INCREMENTAL_FROM=<tag> ...  also build an incremental OTA from that release; it is uploaded
 #                               first (tens of MB instead of 4 GB), the full zip follows as a
-#                               fallback. It installs only over exactly that release: recovery
-#                               refuses it on any other build, without changing anything.
+#                               fallback. It installs only over exactly that release, and only
+#                               from the running system (Updater local install, or
+#                               update_engine_client over adb root): on Virtual A/B, recovery
+#                               sideload refuses incrementals ("snapshots cannot be created").
+#                               Recovery sideload is for the full zip.
 # Every release keeps its target-files in $TF_DIR/<tag>.zip as the base for the next incremental
 # (the last $TF_KEEP are kept). Assets over GitHub's 2 GiB limit are split into .partNN pieces;
 # SHA256SUMS lists the whole zip too, so after joining on the Mac (cat file.zip.part* > file.zip)
