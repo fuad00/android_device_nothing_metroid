@@ -27,3 +27,12 @@ bluetooth.profile.pbap.server.enabled=true
 remote_provisioning.enable_rkpd=true
 remote_provisioning.hostname=remoteprovisioning.googleapis.com
 remote_provisioning.strongbox.rkp_only=false
+
+# Imported from stock B4.1 product/etc/build.prop: properties the stock HALs and services read
+# that the tree did not set (meta/scripts/stock-props.py)
+audio.sys.noisy.broadcast.delay=500
+audio.sys.mute.latency.factor=2
+audio.sys.routing.latency=0
+audio.sys.offload.pstimeout.secs=3
+ro.af.client_heap_size_kbyte=7168
+audio.timecheck.timeout_duration_ms=8000

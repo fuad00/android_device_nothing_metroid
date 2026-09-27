@@ -20,3 +20,44 @@ telephony.lteOnCdmaDevice=1
 
 # WFD
 persist.debug.wfd.enable=1
+
+# Imported from stock B4.1 system/build.prop: properties the stock HALs and services read
+# that the tree did not set (meta/scripts/stock-props.py)
+rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
+dev.pm.dyn_samplingrate=1
+qcom.hw.aac.encoder=true
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-scan=true
+mmp.enable.3g2=true
+media.aac_51_output_enabled=true
+media.settings.xml=/vendor/etc/media_profiles_vendor.xml
+vendor.mm.enable.qcom_parser=16777215
+persist.mm.enable.prefetch=true
+ro.vendor.use_data_netmgrd=true
+persist.timed.enable=true
+persist.fuse_sdcard=true
+persist.vendor.btstack.aac_frm_ctl.enabled=true
+persist.rmnet.data.enable=true
+persist.data.wda.enable=true
+persist.data.df.dl_mode=5
+persist.data.df.ul_mode=5
+persist.data.df.agg.dl_pkt=10
+persist.data.df.agg.dl_size=4096
+persist.data.df.mux_count=8
+persist.data.df.iwlan_mux=9
+persist.data.df.dev_name=rmnet_usb0
+persist.sys.wfd.virtual=0
+debug.sf.enable_hwc_vds=0
+tunnel.audio.encode=true
+use.voice.path.for.pcm.voip=true
+ro.nfc.port=I2C
+config.disable_rtt=true
+persist.vendor.radio.atfwd.start=true
+persist.vendor.overlay.izat.optin=rro
+ro.charger.enable_suspend=1
+ro.camera.notify_nfc=1
+persist.nfc_vendor_extn.lib_file_name=libnfc_vendor_extn_st.so
