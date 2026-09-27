@@ -5,6 +5,9 @@ import collections, os, re, subprocess, sys
 
 O, RE = sys.argv[1:]
 parts = ["system", "system_ext", "product", "vendor", "odm", "apex"]
+# Not loaded by the Android linker: DSP-side objects (rfs/dsp, rfsa) are loaded by the DSP's
+# own loader, and compos binaries run in the microdroid VM, which provides libvm_payload
+SKIP = ("vendor/lib64/rfs/", "vendor/lib/rfsa/", "vendor/lib64/rfsa/", "apex/com.android.compos/")
 have = {"libc.so", "libm.so", "libdl.so", "libdl_android.so", "ld-android.so"}
 elfs = []
 for p in parts:
@@ -21,7 +24,8 @@ for p in parts:
                         continue
             except OSError:
                 continue
-            elfs.append(path)
+            if not os.path.relpath(path, O).startswith(SKIP):
+                elfs.append(path)
 
 miss = collections.defaultdict(list)
 for e in elfs:
