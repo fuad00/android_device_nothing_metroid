@@ -109,7 +109,9 @@ vendor/lib64/com.qualcomm.mcx.policy.mfl.so libjsoncpp
 vendor/lib64/com.qualcomm.mcx.policy.sfl.so libjsoncpp
 vendor/lib64/com.qualcomm.qti.mcx.usecase.extension.so libjsoncpp
 vendor/lib64/hw/android.hardware.bluetooth.audio_sw.so libaudioserviceexampleimpl libaudioutils
+vendor/lib64/hw/audio.bluetooth.default.so libaudioutils libbluetooth_audio_session_aidl
 vendor/lib64/hw/audio.bluetooth_qti.default.so libaudioutils
+vendor/lib64/hw/audio.usb.default.so libaudioutils
 vendor/lib64/hw/camera.qcom.sm8750.so libjsoncpp
 vendor/lib64/hw/camera.qcom.so libtinyxml2 libjsoncpp
 vendor/lib64/hw/com.qti.chi.offline.so libjsoncpp
@@ -178,7 +180,13 @@ vendor/lib64/libvideooptfeature.so libtinyxml2
 vendor/lib64/libvui_dmgr.so libjsoncpp
 vendor/lib64/libwqe.so libxml2
 vendor/lib64/soundfx/libAACeffect_NTaidl.so libaudioutils
+vendor/lib64/soundfx/libbundleaidl.so libaudioutils
+vendor/lib64/soundfx/libdownmixaidl.so libaudioutils
+vendor/lib64/soundfx/libdynamicsprocessingaidl.so libaudioutils
+vendor/lib64/soundfx/libloudnessenhanceraidl.so libaudioutils
 vendor/lib64/soundfx/libquasar.so libtinyxml2 libaudioutils
+vendor/lib64/soundfx/libreverbaidl.so libaudioutils
+vendor/lib64/soundfx/libvisualizeraidl.so libaudioutils
 vendor/lib64/vendor.qti.hardware.camera.aon-service-impl.so libjsoncpp
 vendor/lib64/vendor.qti.hardware.display.snapalloc-impl.so libjsoncpp
 vendor/lib64/vendor.qti.qesdhal-impl.so libjsoncpp

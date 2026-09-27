@@ -287,9 +287,12 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors-V2-ndk.vendor \
     android.hardware.wifi-V2-ndk.vendor \
     lib_android_keymaster_keymint_utils.vendor \
+    libalsautils.vendor \
     libalsautilsv2.vendor \
     libaudio_aidl_conversion_common_ndk.vendor \
+    libbluetooth_audio_session \
     libcppbor_external.vendor \
+    libhidparser \
     libkeymaster_portable.vendor \
     libmediautils_vendor.vendor \
     libmemunreachable.vendor \
