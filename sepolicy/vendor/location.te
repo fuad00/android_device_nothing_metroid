@@ -3,3 +3,5 @@
 # denied (execute_no_trans) and XTRA assistance data and Wi-Fi positioning stayed off.
 domain_auto_trans(vendor_location, vendor_location_xtra_daemon_exec, vendor_location_xtra_daemon)
 domain_auto_trans(vendor_location, vendor_location_lowi_server_exec, vendor_location_lowi_server)
+# ...and the daemons use the descriptors loc_launcher hands down to them
+allow { vendor_location_xtra_daemon vendor_location_lowi_server } vendor_location:fd use;
