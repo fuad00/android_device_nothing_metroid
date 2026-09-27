@@ -424,6 +424,9 @@ PRODUCT_PACKAGES += MetroidKeyHandler
 # Ambient display on movement: LineageOS Doze (from hardware/oplus) listening to the QTI tilt
 # detector. Stock has no pickup-gesture sensor and its tap sensor type exists on no stock HAL.
 PRODUCT_PACKAGES += MetroidDoze
+
+# Install incremental OTAs from the running system (meta/scripts/ota-apply.sh)
+PRODUCT_PACKAGES_DEBUG += update_engine_client
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.metroid.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.metroid.rc
 
