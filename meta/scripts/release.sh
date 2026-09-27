@@ -2,6 +2,8 @@
 # Server: publish the latest metroid build to GitHub Releases of fuad00/nothing_phone_3_lineage.
 #   release.sh <tag> "<notes>"
 #   ZIP_ONLY=1 release.sh ...   skip the separate images (they are inside the zip payload anyway)
+#   LOCAL_ONLY=1 ...            stage everything in $STAGE/<tag> (target-files, incremental, full zip)
+#                               without uploading: SMK OS builds until they get a private repo
 #   INCREMENTAL_FROM=<tag> ...  also build an incremental OTA from that release; it is uploaded
 #                               first (tens of MB instead of 4 GB), the full zip follows as a
 #                               fallback. It installs only over exactly that release, and only
@@ -26,7 +28,7 @@ TAG=$1
 NOTES=${2:-}
 
 if grep -q "^bluetooth.device.default_name=SMK" "$OUT/product/etc/build.prop" 2>/dev/null &&
-   [ "$REPO" = fuad00/nothing_phone_3_lineage ]; then
+   [ "$REPO" = fuad00/nothing_phone_3_lineage ] && [ "${LOCAL_ONLY:-0}" != 1 ]; then
   echo "this is an SMK OS build: publish it to a private repo (REPO=...)" >&2; exit 2
 fi
 zip=$(ls -t "$OUT"/lineage-23.2-*-UNOFFICIAL*-metroid.zip | head -1)
@@ -61,6 +63,11 @@ if [ "$(stat -c %s "$z")" -gt $limit ]; then
   split -b 1900M -d --additional-suffix= "$z" "$z.part"
   rm "$z"
   sha256sum ./"$z".part* >> SHA256SUMS
+fi
+
+if [ "${LOCAL_ONLY:-0}" = 1 ]; then
+  ls -la "$STAGE/$TAG"
+  exit 0
 fi
 
 if [ -n "$inc" ]; then
