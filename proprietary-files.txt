@@ -3881,17 +3881,18 @@ system_ext/lib64/vendor.qti.qspmhal-V1-ndk.so;MODULE_SUFFIX=_system_ext;DISABLE_
 
 # Stock HAL modules loaded by file name (hw_get_module, audio effect and sensors multihal
 # configs). AOSP has source modules of the same names, but those are generic stubs (the
-# stock fingerprint.default is the Goodix HAL) and are not installed; the stock files keep
-# their names under a _stock module suffix. Found missing on the r8 image.
-vendor/lib64/hw/fingerprint.default.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/hw/audio.bluetooth.default.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/hw/audio.r_submix.default.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/hw/audio.usb.default.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/hw/android.hardware.bluetooth.audio@2.0-impl.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/hw/sensors.dynamic_sensor_hal.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/soundfx/libbundleaidl.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/soundfx/libdownmixaidl.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/soundfx/libdynamicsprocessingaidl.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/soundfx/libloudnessenhanceraidl.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/soundfx/libreverbaidl.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
-vendor/lib64/soundfx/libvisualizeraidl.so;MODULE_SUFFIX=_stock;DISABLE_DEPS
+# stock fingerprint.default is the Goodix HAL) and are not installed. Soong still defines the
+# source modules' symbol files, so a prebuilt module of the same file name clashes with them;
+# install the stock files with plain copy rules instead. Found missing on the r8 image.
+vendor/lib64/hw/fingerprint.default.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/hw/audio.bluetooth.default.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/hw/audio.r_submix.default.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/hw/audio.usb.default.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/hw/android.hardware.bluetooth.audio@2.0-impl.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/hw/sensors.dynamic_sensor_hal.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/soundfx/libbundleaidl.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/soundfx/libdownmixaidl.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/soundfx/libdynamicsprocessingaidl.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/soundfx/libloudnessenhanceraidl.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/soundfx/libreverbaidl.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/soundfx/libvisualizeraidl.so;MAKE_COPY_RULE_ONLY
