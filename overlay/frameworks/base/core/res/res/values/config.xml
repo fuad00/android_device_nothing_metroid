@@ -122,12 +122,13 @@
          races that vote and loses. Defaulting to 120 removes the race, as on stock. -->
     <integer name="config_defaultPeakRefreshRate">120</integer>
 
-    <!-- config_defaultRefreshRate is deliberately NOT overridden here (AOSP default 60).
-         An earlier revision pinned it to 120 to keep UDFPS local-HBM working, but that made
-         120 Hz the *floor* and silently overrode Settings > Display > Smooth Display when a
-         user turned it off. Replaced by the proper fix: UdfpsControllerOverlay.show() now
-         requests the max refresh rate as soon as the fingerprint overlay appears (and hide()
-         already drops it), so the panel is at 120 Hz before a finger lands and returns to the
-         user's chosen rate afterwards. Peak stays 120 above so Smooth Display defaults on,
-         matching stock. -->
+    <!-- No default refresh rate vote, as stock's system overlay (FrameworksResCommon_Sys: 0).
+         The AOSP default of 60 adds a lowest-priority render vote of 0-60 Hz; votes of all
+         priorities are intersected unless they conflict, so with Smooth Display on (0-120)
+         the panel stayed at 60 Hz (23.2 r7). A value of 120 is no better: an earlier revision
+         used it to keep UDFPS local-HBM working and it overrode Smooth Display when a user
+         turned it off. UDFPS instead gets the max rate from UdfpsControllerOverlay.show(), so
+         the panel is at 120 Hz before a finger lands. With 0, the Smooth Display setting
+         (peak_refresh_rate, default 120 above) alone decides. -->
+    <integer name="config_defaultRefreshRate">0</integer>
 </resources>
