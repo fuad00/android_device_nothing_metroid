@@ -87,3 +87,7 @@
 
 # Stock (Nothing) thermal HAL, installed beside the qcom-caf build
 /vendor/bin/hw/android\.hardware\.thermal-service\.qti-nothing    u:object_r:hal_thermal_default_exec:s0
+
+# Stock copies of ABI-unstable C++ libraries (stock-abi-users.txt). Stock SP-HALs such as the
+# snapalloc implementation load them into system processes (surfaceflinger, bootanim).
+/vendor/lib64/lib(jsoncpp|tinyxml2|xml2|chrome|flatbuffers-cpp)-stock\.so    u:object_r:same_process_hal_file:s0
