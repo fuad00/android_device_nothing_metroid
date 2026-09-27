@@ -284,13 +284,11 @@ PRODUCT_PACKAGES += \
 # Found with meta/scripts/check-needed.py over the build output.
 PRODUCT_PACKAGES += \
     android.hardware.audio.core.sounddose-V2-ndk.vendor \
-    android.hardware.bluetooth.audio-impl \
     android.hardware.sensors-V2-ndk.vendor \
     android.hardware.wifi-V2-ndk.vendor \
     lib_android_keymaster_keymint_utils.vendor \
     libalsautilsv2.vendor \
     libaudio_aidl_conversion_common_ndk.vendor \
-    libbluetooth_audio_session_aidl \
     libcppbor_external.vendor \
     libkeymaster_portable.vendor \
     libmediautils_vendor.vendor \

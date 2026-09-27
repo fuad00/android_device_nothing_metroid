@@ -43,6 +43,9 @@ STOCK_ABI_LIBS = (
     'libchrome',
     'libflatbuffers-cpp',
     'libaudioserviceexampleimpl',
+    'libaudioutils',
+    'libbluetooth_audio_session_aidl',
+    'android.hardware.bluetooth.audio-impl',
 )
 
 

@@ -29,6 +29,7 @@ vendor/bin/qsh_wifi_test libxml2
 vendor/bin/qttestclient libjsoncpp
 vendor/bin/ssgtzd libjsoncpp
 vendor/bin/vendor_cmd_tool libxml2
+vendor/lib64/android.hardware.bluetooth.audio-impl-stock.so libbluetooth_audio_session_aidl
 vendor/lib64/camera/com.qti.eeprom.arbok_front_p24c128g_s5kjn1_eeprom.so libjsoncpp
 vendor/lib64/camera/com.qti.eeprom.arbok_tele_p24c256f_s5kjn5_eeprom.so libjsoncpp
 vendor/lib64/camera/com.qti.eeprom.arbok_ultrawide_p24c128g_s5kjn1_eeprom.so libjsoncpp
@@ -107,19 +108,24 @@ vendor/lib64/com.qualcomm.mcx.nonlinearmapper.so libjsoncpp
 vendor/lib64/com.qualcomm.mcx.policy.mfl.so libjsoncpp
 vendor/lib64/com.qualcomm.mcx.policy.sfl.so libjsoncpp
 vendor/lib64/com.qualcomm.qti.mcx.usecase.extension.so libjsoncpp
-vendor/lib64/hw/android.hardware.bluetooth.audio_sw.so libaudioserviceexampleimpl
+vendor/lib64/hw/android.hardware.bluetooth.audio_sw.so libaudioserviceexampleimpl libaudioutils
+vendor/lib64/hw/audio.bluetooth_qti.default.so libaudioutils
 vendor/lib64/hw/camera.qcom.sm8750.so libjsoncpp
 vendor/lib64/hw/camera.qcom.so libtinyxml2 libjsoncpp
 vendor/lib64/hw/com.qti.chi.offline.so libjsoncpp
 vendor/lib64/hw/com.qti.chi.override.so libjsoncpp
-vendor/lib64/hw/libaudiocorehal.default.so libxml2 libaudioserviceexampleimpl
-vendor/lib64/hw/libaudiocorehal.qti.so libxml2 libaudioserviceexampleimpl
+vendor/lib64/hw/libaudiocorehal.default.so libxml2 libaudioserviceexampleimpl libaudioutils
+vendor/lib64/hw/libaudiocorehal.qti.so libxml2 libaudioserviceexampleimpl libaudioutils
 vendor/lib64/hw/libaudioeffecthal.qti.so libtinyxml2
 vendor/lib64/hw/vendor.qti.hardware.capabilityconfigstore-impl.so libxml2
 vendor/lib64/libaodoptfeature.so libtinyxml2
 vendor/lib64/libapengine.so libtinyxml2
-vendor/lib64/libaudioserviceexampleimpl-stock.so libxml2
+vendor/lib64/libaudioserviceexampleimpl-stock.so libxml2 libaudioutils libbluetooth_audio_session_aidl android.hardware.bluetooth.audio-impl
+vendor/lib64/libbatterylistener.so libaudioutils
+vendor/lib64/libbluetooth_audio_session_aidl-stock.so libxml2 libflatbuffers-cpp
 vendor/lib64/libbluetooth_audio_session_aidl_qti.so libxml2 libflatbuffers-cpp
+vendor/lib64/libbluetooth_audio_session_qti.so libaudioutils
+vendor/lib64/libbluetooth_audio_session_qti_2_1.so libaudioutils
 vendor/lib64/libcamerapostproc.so libjsoncpp
 vendor/lib64/libcamerapoweroptfeature.so libtinyxml2
 vendor/lib64/libcamxcoreutils.so libtinyxml2
@@ -132,8 +138,10 @@ vendor/lib64/libcom.qti.chinodeutils.so libjsoncpp
 vendor/lib64/libcommonchiutils.so libjsoncpp
 vendor/lib64/libdrmfs.so libxml2
 vendor/lib64/libeva.so libjsoncpp
+vendor/lib64/libfmpal.so libaudioutils
 vendor/lib64/libgamepoweroptfeature.so libtinyxml2
 vendor/lib64/libgnss.so libxml2
+vendor/lib64/libhfp_pal.so libaudioutils
 vendor/lib64/liblearningmodule.so libtinyxml2
 vendor/lib64/libnothingzslmotionlevel.so libjsoncpp
 vendor/lib64/liboffscreenpoweroptfeature.so libtinyxml2
@@ -169,7 +177,8 @@ vendor/lib64/libtaautoload.so libjsoncpp
 vendor/lib64/libvideooptfeature.so libtinyxml2
 vendor/lib64/libvui_dmgr.so libjsoncpp
 vendor/lib64/libwqe.so libxml2
-vendor/lib64/soundfx/libquasar.so libtinyxml2
+vendor/lib64/soundfx/libAACeffect_NTaidl.so libaudioutils
+vendor/lib64/soundfx/libquasar.so libtinyxml2 libaudioutils
 vendor/lib64/vendor.qti.hardware.camera.aon-service-impl.so libjsoncpp
 vendor/lib64/vendor.qti.hardware.display.snapalloc-impl.so libjsoncpp
 vendor/lib64/vendor.qti.qesdhal-impl.so libjsoncpp

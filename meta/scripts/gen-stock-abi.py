@@ -8,7 +8,8 @@
 import os, re, subprocess, sys
 
 LIBS = ['libtinyxml2', 'libjsoncpp', 'libxml2', 'libchrome', 'libflatbuffers-cpp',
-        'libaudioserviceexampleimpl']
+        'libaudioserviceexampleimpl', 'libaudioutils', 'libbluetooth_audio_session_aidl',
+        'android.hardware.bluetooth.audio-impl']
 
 here = os.path.dirname(os.path.abspath(__file__))
 device = os.path.dirname(os.path.dirname(here))
