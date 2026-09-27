@@ -22,9 +22,11 @@ NOTES=${2:-}
 
 zip=$(ls -t "$OUT"/lineage-23.2-*-UNOFFICIAL*-metroid.zip | head -1)
 z=$(basename "$zip")
-tf=$(ls -t "$OUT"/obj/PACKAGING/target_files_intermediates/lineage_metroid-target_files*.zip | head -1)
+# the build leaves target-files as a directory only; zip it (soong_zip, ~30 s for 14 GB)
+tf=$OUT/obj/PACKAGING/target_files_intermediates/lineage_metroid-target_files
+[ -d "$tf" ] || { echo "no target-files directory $tf" >&2; exit 2; }
 mkdir -p "$TF_DIR"
-cp "$tf" "$TF_DIR/$TAG.zip"
+"$TOP/out/host/linux-x86/bin/soong_zip" -d -o "$TF_DIR/$TAG.zip" -C "$tf" -D "$tf"
 ls -t "$TF_DIR"/*.zip | tail -n +$((TF_KEEP + 1)) | xargs -r rm -f
 
 rm -rf "${STAGE:?}/$TAG" && mkdir -p "$STAGE/$TAG" && cd "$STAGE/$TAG"
