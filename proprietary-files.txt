@@ -22,7 +22,7 @@ system_ext/bin/sltntc
 vendor/bin/hw/android.hardware.thermal-service.qti:vendor/bin/hw/android.hardware.thermal-service.qti-nothing
 
 # QCC
-system_ext/app/QCC/QCC.apk:system_ext/priv-app/QCC/QCC.apk;PRESIGNED
+system_ext/app/QCC/QCC.apk:system_ext/priv-app/QCC/QCC.apk
 system_ext/bin/qccsyshal_aidl-service
 system_ext/etc/init/vendor.qti.qccsyshal_aidl-service.rc
 system_ext/etc/vintf/manifest/vendor.qti.qccsyshal_aidl-service.xml
@@ -31,8 +31,8 @@ system_ext/lib64/vendor.qti.qccvndhal_aidl-V1-ndk.so
 vendor/etc/vintf/manifest/vendor.qti.qccvndhal_aidl-service.xml
 
 # Qualcomm cellular and assisted-location services
-vendor/app/CACertService/CACertService.apk;PRESIGNED
-vendor/app/IWlanService/IWlanService.apk;PRESIGNED
+vendor/app/CACertService/CACertService.apk
+vendor/app/IWlanService/IWlanService.apk
 
 system_ext/apex/com.android.compos.apex
 system_ext/apex/com.android.vndk.v34.apex
@@ -121,15 +121,15 @@ system_ext/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml
 
 # Telephony
 system/framework/nt-telephony-interface.jar
-system_ext/app/QtiTelephonyService/QtiTelephonyService.apk;PRESIGNED
-system_ext/priv-app/QtiTelephony/QtiTelephony.apk;PRESIGNED;REQUIRED=QtiTelephonyCompat
-system_ext/priv-app/ims/ims.apk;PRESIGNED;REQUIRED=QtiTelephonyCompat
-system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk;PRESIGNED
+system_ext/app/QtiTelephonyService/QtiTelephonyService.apk
+system_ext/priv-app/QtiTelephony/QtiTelephony.apk;REQUIRED=QtiTelephonyCompat
+system_ext/priv-app/ims/ims.apk;REQUIRED=QtiTelephonyCompat
+system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 
 # eSIM
 product/priv-app/EuiccGoogle/EuiccGoogle.apk;PRESIGNED
 product/app/uimlpaservice/uimlpaservice.apk
-product/app/datastatusnotification/datastatusnotification.apk;PRESIGNED
+product/app/datastatusnotification/datastatusnotification.apk
 product/lib64/libjni_aidl_service.so
 system_ext/etc/permissions/vendor.qti.hardware.c2pa-V1-java.xml
 system_ext/etc/permissions/vendor.qti.ims.rcsservice.xml
