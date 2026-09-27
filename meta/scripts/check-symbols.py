@@ -9,9 +9,14 @@ import collections, os, subprocess, sys
 O, NM = sys.argv[1:3]
 PREFIXES = tuple(sys.argv[3:]) or ("vendor/", "odm/")
 SKIP = ("vendor/lib64/rfs/", "vendor/lib/rfsa/", "vendor/lib64/rfsa/")
-# Where the vendor linker namespace finds libraries: vendor and odm, LLNDK from system/APEX
-SEARCH = ["vendor/lib64", "vendor/lib64/hw", "vendor/lib64/egl", "odm/lib64", "odm/lib64/hw",
-          "system/lib64", "apex/com.android.runtime/lib64/bionic", "system/apex/com.android.runtime/lib64/bionic"]
+# Where the vendor linker namespace finds libraries: vendor and odm, and LLNDK libraries from
+# system or their APEX (libcom.android.tethering.connectivity_native lives in tethering)
+SEARCH = ["vendor/lib64", "vendor/lib64/hw", "vendor/lib64/egl", "odm/lib64", "odm/lib64/hw"]
+LLNDK_SEARCH = ["system/lib64", "apex/com.android.runtime/lib64/bionic"] + sorted(
+    os.path.relpath(os.path.join(O, "apex", a, "lib64"), O)
+    for a in os.listdir(os.path.join(O, "apex")) if os.path.isdir(os.path.join(O, "apex", a, "lib64")))
+LLNDK = {l.strip() for l in open(os.path.join(O, "system/etc/llndk.libraries.txt")) if l.strip()}
+LLNDK |= {"libc.so", "libm.so", "libdl.so"}
 
 def is_elf(p):
     try:
@@ -21,7 +26,7 @@ def is_elf(p):
         return False
 
 def find(name):
-    for d in SEARCH:
+    for d in SEARCH + (LLNDK_SEARCH if name in LLNDK else []):
         p = os.path.join(O, d, name)
         if os.path.isfile(p):
             return p
