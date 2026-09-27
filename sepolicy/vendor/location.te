@@ -1,0 +1,5 @@
+# The stock loc_launcher (vendor_location) starts xtra-daemon and lowi-server itself, as the
+# stock policy expects; the sm8750 QTI policy only lets init start them, so the launch was
+# denied (execute_no_trans) and XTRA assistance data and Wi-Fi positioning stayed off.
+domain_auto_trans(vendor_location, vendor_location_xtra_daemon_exec, vendor_location_xtra_daemon)
+domain_auto_trans(vendor_location, vendor_location_lowi_server_exec, vendor_location_lowi_server)

@@ -9,3 +9,7 @@ r_dir_file(hal_camera_default, mnt_vendor_file)
 hal_client_domain(hal_camera_default, hal_power)
 
 allow hal_camera_default self:capability { fowner ipc_lock };
+
+# vendor.noth.hardware.camera-service and the QTI camera provider both run as
+# hal_camera_default and call each other over binder
+binder_call(hal_camera_default, hal_camera_default)
