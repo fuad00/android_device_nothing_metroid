@@ -23,7 +23,6 @@ persist.debug.wfd.enable=1
 
 # Imported from stock B4.1 system/build.prop: properties the stock HALs and services read
 # that the tree did not set (meta/scripts/stock-props.py)
-rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 dev.pm.dyn_samplingrate=1
 qcom.hw.aac.encoder=true
 media.stagefright.enable-player=true
@@ -34,7 +33,6 @@ media.stagefright.enable-fma2dp=true
 media.stagefright.enable-scan=true
 mmp.enable.3g2=true
 media.aac_51_output_enabled=true
-media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 vendor.mm.enable.qcom_parser=16777215
 persist.mm.enable.prefetch=true
 ro.vendor.use_data_netmgrd=true
@@ -60,4 +58,3 @@ persist.vendor.radio.atfwd.start=true
 persist.vendor.overlay.izat.optin=rro
 ro.charger.enable_suspend=1
 ro.camera.notify_nfc=1
-persist.nfc_vendor_extn.lib_file_name=libnfc_vendor_extn_st.so

@@ -70,12 +70,26 @@ for d, _, fs in os.walk(out):
         if f.endswith(".prop"):
             ours |= props(os.path.join(d, f)).keys()
 
+libs = set()
+for part in ("system", "system_ext", "product", "vendor", "odm"):
+    for d, _, fs in os.walk(os.path.join(out, part)):
+        libs |= {f for f in fs if f.endswith(".so")}
+
+
+def dangling(v):
+    """A value naming a file or library our build does not ship: importing it breaks whoever
+    opens it (media.settings.xml pointing at a missing file aborted zygote in r10)."""
+    if v.startswith("/") and not v.startswith("/dev/") and re.match(r"^/[\w./-]+$", v):
+        return not os.path.exists(os.path.join(out, v.lstrip("/")))
+    return v.endswith(".so") and "/" not in v and "," not in v and v not in libs
+
+
 for src, dst in TARGETS.items():
     path = os.path.join(stock, src)
     if not os.path.exists(path):
         continue
     lines = [f"{k}={v}" for k, v in props(path).items()
-             if v and k not in ours and not any(p.search(k) for p in SKIP)]
+             if v and k not in ours and not any(p.search(k) for p in SKIP) and not dangling(v)]
     if lines:
         print(f"### {dst} (from stock {src}, {len(lines)})")
         print("\n".join(lines))
