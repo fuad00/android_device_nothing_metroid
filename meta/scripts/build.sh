@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Build LineageOS 23.2 for metroid on the build server (own tree, see meta/manifests/metroid.xml).
 #   scripts/build.sh [target] [extra mka args]   target: bacon (default) | bootimage | vendorbootimage | ...
-# Env: VARIANT=userdebug (default), DEBUG=1 (default) -> WITH_ADB_INSECURE=true
+# Env: VARIANT=userdebug (default), DEBUG=1 (default) -> WITH_ADB_INSECURE=true,
+#      ALLOW_PARALLEL=1 -> start even while another tree builds
 # Log: /root/nothing_phone_3/logs/build_<date>_<target>.log
 set -o pipefail  # no -u: build/envsetup.sh uses unset variables
 
@@ -12,8 +13,9 @@ shift || true
 VARIANT=${VARIANT:-userdebug}
 LOG=$ROOT/logs/build_$(date +%Y%m%d_%H%M)_${TARGET}.log
 
-# One build at a time on the server (the OnePlus tree builds here too)
-if pgrep -af "[s]oong_ui" >/dev/null; then
+# One build at a time on the server (the OnePlus tree builds here too), unless the user asked
+# for a parallel one: ALLOW_PARALLEL=1 (then pass a low -j, e.g. -j6, and expect both to slow)
+if [ "${ALLOW_PARALLEL:-0}" != 1 ] && pgrep -af "[s]oong_ui" >/dev/null; then
   echo "another build is running:"; pgrep -af "[s]oong_ui"; exit 2
 fi
 
