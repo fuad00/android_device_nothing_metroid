@@ -131,4 +131,12 @@
          the panel is at 120 Hz before a finger lands. With 0, the Smooth Display setting
          (peak_refresh_rate, default 120 above) alone decides. -->
     <integer name="config_defaultRefreshRate">0</integer>
+
+    <!-- Ambient display, as stock's FrameworksResCommon_Sys overlay: SystemUI's DozeService, and
+         the panel supports the DOZE/DOZE_SUSPEND power modes stock uses for its always-on
+         display. Off by default; MetroidDoze pulses it when the tilt detector fires. -->
+    <string name="config_dozeComponent" translatable="false">com.android.systemui/com.android.systemui.doze.DozeService</string>
+    <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
+    <bool name="config_dozeAlwaysOnEnabled">false</bool>
+    <bool name="config_dozeAfterScreenOffByDefault">true</bool>
 </resources>

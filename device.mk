@@ -421,6 +421,10 @@ PRODUCT_COPY_FILES += \
     device/nothing/metroid/keylayout/gpio-keys.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/gpio-keys.kl
 PRODUCT_PACKAGES += MetroidKeyHandler
 
+# Ambient display on movement: LineageOS Doze (from hardware/oplus) listening to the QTI tilt
+# detector. Stock has no pickup-gesture sensor and its tap sensor type exists on no stock HAL.
+PRODUCT_PACKAGES += MetroidDoze
+
 
 # Camera: skip Morpho EIS init in GME node (SIGILL in libmorpho_video_stabilizer on first
 # frame; forces QTIGMEWrapper instead). Verified live 2026-07-10 — camera preview + capture work.
