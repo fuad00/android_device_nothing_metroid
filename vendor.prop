@@ -38,10 +38,11 @@ bluetooth.profile.csip.set_coordinator.enabled=true
 bluetooth.profile.hap.client.enabled=true
 bluetooth.profile.mcp.server.enabled=true
 bluetooth.profile.vcp.controller.enabled=true
-persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac-lhdc-mihc
-# The stock offload provider never creates an encoding session on this port.
-# Use the validated AIDL software module until that proprietary path is usable.
-persist.bluetooth.a2dp_offload.disabled=true
+# A2DP offload as on stock. The logix727 port disabled it (its offload provider never created
+# an encoding session) and used the AIDL software module; with the stock audio HAL stack here the
+# software path fails (APM failed to make available A2DP device) and offload plays.
+persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
+persist.bluetooth.a2dp_offload.disabled=false
 persist.bluetooth.leaudio_offload.disabled=false
 persist.sys.fflag.override.settings_bluetooth_hearing_aid=true
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
