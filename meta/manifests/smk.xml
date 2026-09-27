@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Optional local manifest: SMK OS branding for metroid, on top of metroid.xml.
+  vendor/smk is private; without this manifest (or without BRANDING=1 at build time) the tree
+  builds plain LineageOS, e.g. for the XDA/4PDA thread. meta/scripts/build.sh exports
+  CUSTOM_BRANDING_DIR=vendor/smk only for BRANDING=1, and the device makefiles include its
+  config/{BoardConfigBranding,branding}.mk only then.
+    cp meta/manifests/smk.xml <tree>/.repo/local_manifests/ && repo sync vendor/smk \
+       packages/apps/Launcher3 packages/apps/DocumentsUI
+-->
+<manifest>
+  <!-- Launcher3: reload cached icons after a system update (SMK icon overlays) -->
+  <remove-project name="LineageOS/android_packages_apps_Launcher3" path="packages/apps/Launcher3" />
+  <project path="packages/apps/Launcher3" name="android_packages_apps_Launcher3" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk-fs,sysui-studio,pdk-cw-tvc" />
+
+  <!-- DocumentsUI: overlays may replace the launcher icon -->
+  <remove-project name="LineageOS/android_packages_apps_DocumentsUI" path="packages/apps/DocumentsUI" />
+  <project path="packages/apps/DocumentsUI" name="android_packages_apps_DocumentsUI" remote="fuad00-metroid" revision="lineage-23.2" groups="pdk-cw-fs,pdk-fs" />
+
+  <project path="vendor/smk" name="smk" remote="fuad00-metroid" revision="main" />
+</manifest>

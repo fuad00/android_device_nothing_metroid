@@ -362,3 +362,9 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 # media.resource_manager -> black camera preview. Flip both to 64-bit via soong_config.
 TARGET_DYNAMIC_64_32_MEDIASERVER := true
 TARGET_DYNAMIC_64_32_DRMSERVER := true
+
+# Optional private branding (boot animation, props): $(CUSTOM_BRANDING_DIR)/config/BoardConfigBranding.mk
+# Set by meta/scripts/build.sh for BRANDING=1 (meta/manifests/smk.xml); unset builds plain LineageOS.
+ifneq ($(CUSTOM_BRANDING_DIR),)
+-include $(CUSTOM_BRANDING_DIR)/config/BoardConfigBranding.mk
+endif

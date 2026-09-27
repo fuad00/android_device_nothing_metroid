@@ -3,6 +3,7 @@
 #   scripts/build.sh [target] [extra mka args]   target: bacon (default) | bootimage | vendorbootimage | ...
 # Env: VARIANT=userdebug (default), DEBUG=1 (default) -> WITH_ADB_INSECURE=true,
 #      ALLOW_PARALLEL=1 -> start even while another tree builds
+#      BRANDING=1 -> SMK OS (vendor/smk from meta/manifests/smk.xml); unset -> plain LineageOS
 # Log: /root/nothing_phone_3/logs/build_<date>_<target>.log
 set -o pipefail  # no -u: build/envsetup.sh uses unset variables
 
@@ -34,7 +35,11 @@ export TARGET_UNOFFICIAL_BUILD_ID=fuad00
 export BUILD_USERNAME=fuad00 BUILD_HOSTNAME=fuad00-lineage
 [ "${DEBUG:-1}" = 1 ] && export WITH_ADB_INSECURE=true
 # Private branding only when the tree opts in (see docs); off until the first stable boot
-[ -n "$BRANDING" ] && [ -f "$TOP/vendor/smk/config/branding.mk" ] && export CUSTOM_BRANDING_DIR=vendor/smk
+if [ -n "$BRANDING" ]; then
+  [ -f "$TOP/vendor/smk/config/branding.mk" ] || {
+    echo "BRANDING=1 but no vendor/smk: add meta/manifests/smk.xml and repo sync"; exit 2; }
+  export CUSTOM_BRANDING_DIR=vendor/smk
+fi
 export LC_ALL=C.UTF-8
 
 {

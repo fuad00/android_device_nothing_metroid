@@ -14,7 +14,9 @@
 # SHA256SUMS lists the whole zip too, so after joining on the Mac (cat file.zip.part* > file.zip)
 # `shasum -a 256 -c` checks it.
 set -euo pipefail
-REPO=fuad00/nothing_phone_3_lineage
+# The public repo takes plain LineageOS builds only; an SMK OS build (vendor/smk is private) must
+# name a private repo: REPO=<owner/private-repo> release.sh ...
+REPO=${REPO:-fuad00/nothing_phone_3_lineage}
 TOP=/root/nothing_phone_3/lineage
 OUT=$TOP/out/target/product/metroid
 STAGE=/root/nothing_phone_3/release
@@ -23,6 +25,10 @@ TF_KEEP=5
 TAG=$1
 NOTES=${2:-}
 
+if grep -q "^bluetooth.device.default_name=SMK" "$OUT/product/etc/build.prop" 2>/dev/null &&
+   [ "$REPO" = fuad00/nothing_phone_3_lineage ]; then
+  echo "this is an SMK OS build: publish it to a private repo (REPO=...)" >&2; exit 2
+fi
 zip=$(ls -t "$OUT"/lineage-23.2-*-UNOFFICIAL*-metroid.zip | head -1)
 z=$(basename "$zip")
 # the build leaves target-files as a directory only; zip it (soong_zip, ~30 s for 14 GB)

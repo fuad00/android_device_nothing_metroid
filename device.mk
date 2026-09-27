@@ -440,3 +440,9 @@ PRODUCT_SYSTEM_PROPERTIES += persist.vendor.morpho.eis.force_gmenode=1
 
 # Populate vendor_dlkm + system_dlkm with the stock kernel modules (empty = hard reset ~7-9s).
 include $(LOCAL_PATH)/dlkm_modules.mk
+
+# Optional private branding (overlays, names, wallpapers): $(CUSTOM_BRANDING_DIR)/config/branding.mk
+# Set by meta/scripts/build.sh for BRANDING=1 (meta/manifests/smk.xml); unset builds plain LineageOS.
+ifneq ($(CUSTOM_BRANDING_DIR),)
+$(call inherit-product-if-exists, $(CUSTOM_BRANDING_DIR)/config/branding.mk)
+endif
