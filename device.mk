@@ -289,12 +289,16 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi-V2-ndk.vendor \
     lib_android_keymaster_keymint_utils.vendor \
     libalsautilsv2.vendor \
+    libaudio_aidl_conversion_common_ndk.vendor \
     libbluetooth_audio_session_aidl \
     libcppbor_external.vendor \
+    libkeymaster_portable.vendor \
     libmediautils_vendor.vendor \
+    libmemunreachable.vendor \
     libnbaio_mono \
     libnetfilter_conntrack \
     libnfnetlink \
+    libsoft_attestation_cert.vendor \
     libtinyalsav2.vendor \
     vendor.qti.hardware.display.allocator@4.0.vendor
 
