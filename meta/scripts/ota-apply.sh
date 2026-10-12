@@ -2,12 +2,12 @@
 # Mac: install an OTA zip (incremental or full) on the running phone through update_engine, the
 # way the Updater app does. On Virtual A/B, recovery sideload refuses incrementals; this does not.
 # Needs adb root and a debug build (update_engine_client ships in PRODUCT_PACKAGES_DEBUG).
-#   ota-apply.sh <ota.zip> [serial]     then reboot when it reports UPDATED_NEED_REBOOT
+#   ota-apply.sh <ota.zip> <adb serial>  then reboot when it reports UPDATED_NEED_REBOOT
 # An incremental checks every source block: vbmeta flags left by adb disable-verity or remount
 # make it fail with kDownloadStateInitializationError. Restore the release's vbmeta first.
 set -euo pipefail
 ZIP=${1:?ota zip}
-SERIAL=${2:-<serial>}
+SERIAL=${2:?adb serial (adb devices)}
 adb() { command adb -s "$SERIAL" "$@"; }
 
 read -r OFFSET SIZE < <(python3 - "$ZIP" <<'PY'

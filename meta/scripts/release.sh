@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Server: publish the latest metroid build to GitHub Releases of fuad00/nothing_phone_3_lineage.
+# Server: publish the latest metroid build to GitHub Releases of fuad00/android_device_nothing_metroid.
 #   release.sh <tag> "<notes>"
 #   ZIP_ONLY=1 release.sh ...   skip the separate images (they are inside the zip payload anyway)
 #   LOCAL_ONLY=1 ...            stage everything in $STAGE/<tag> (target-files, incremental, full zip)
@@ -18,7 +18,7 @@
 set -euo pipefail
 # The public repo takes plain LineageOS builds only; an SMK OS build (vendor/smk is private) must
 # name a private repo: REPO=<owner/private-repo> release.sh ...
-REPO=${REPO:-fuad00/nothing_phone_3_lineage}
+REPO=${REPO:-fuad00/android_device_nothing_metroid}
 TOP=/root/nothing_phone_3/lineage
 OUT=$TOP/out/target/product/metroid
 STAGE=/root/nothing_phone_3/release
@@ -28,7 +28,7 @@ TAG=$1
 NOTES=${2:-}
 
 if grep -q "^bluetooth.device.default_name=SMK" "$OUT/product/etc/build.prop" 2>/dev/null &&
-   [ "$REPO" = fuad00/nothing_phone_3_lineage ] && [ "${LOCAL_ONLY:-0}" != 1 ]; then
+   [ "$REPO" = fuad00/android_device_nothing_metroid ] && [ "${LOCAL_ONLY:-0}" != 1 ]; then
   echo "this is an SMK OS build: publish it to a private repo (REPO=...)" >&2; exit 2
 fi
 zip=$(ls -t "$OUT"/lineage-23.2-*-UNOFFICIAL*-metroid.zip | head -1)

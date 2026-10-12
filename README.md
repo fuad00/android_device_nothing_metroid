@@ -1,34 +1,63 @@
-# SMK OS (LineageOS 23.2) для Nothing Phone (3) — A024, metroid
+# LineageOS 23.2 for the Nothing Phone (3) (metroid)
 
-Монорепозиторий порта: device-дерево (корень репозитория, чекаутится в `device/nothing/metroid`)
-и мета-часть в `meta/` — манифест, скрипты, документы, результаты тестов. Релизы (zip, образы) — в
-GitHub Releases этого репозитория.
+Unofficial LineageOS 23.2 (Android 16) for the Nothing Phone (3), model A024, codename `metroid`
+(Snapdragon 8s Gen 4 / SM8735, platform `sun`). The repository root is the device tree
+(`device/nothing/metroid`); build tooling, manifests and notes live in [`meta/`](meta/).
 
-Ядро собирается из исходников (отдельный форк), blobs извлекаются из стокового OTA на сервере,
-их копия — в отдельном приватном репозитории, не здесь.
+Based on the metroid tree by [logix727](https://github.com/logix727/android_device_nothing_metroid),
+whose history is kept here.
 
-## Устройство
+## Status
 
-Nothing Phone (3), A024, `metroid`, SM8735 (Snapdragon 8s Gen 4, платформа `sun`), ядро 6.6 GKI,
-Virtual A/B со сжатием, экран 1260×2800 @ 480 dpi. Подробно — [meta/docs/device-info.md](meta/docs/device-info.md).
+Working: display at 120 Hz, touch, in-display fingerprint, PIN/pattern lock, Wi-Fi, Bluetooth
+(A2DP offload), audio and audio effects, calls and mobile data, NFC, GPS (with XTRA), camera,
+sensors, always-on display with a pulse when the phone is moved, tap to wake, encryption,
+SELinux enforcing, OTA updates.
 
-## Где что лежит
+Known issues: eSIM is not detected (the modem reports the embedded slot as empty). The boot
+logo before the boot animation is Nothing's own (it lives in signed bootloader firmware).
 
-| | |
-|---|---|
-| Сервер сборки | `root@<build-server>`, дерево LineageOS — общее с OnePlus: `/root/oneplus_10_pro_lineage/lineage` (свой local manifest `metroid.xml`) |
-| — свои скрипты, логи, сток | `/root/nothing_phone_3/{scripts,logs,stock}` |
-| Мак | `~/Downloads/nothing_phone_3/` — этот репозиторий в `nothing_phone_3_lineage/`, сток в `stock/`, дампы телефона в `device_dumps/` (**не коммитить**: IMEI/EFS/persist) |
+Builds: `user`, signed with the maintainer's own release keys, from
+[Releases](../../releases).
 
-Файлы больше 50 МБ между сервером и маком не копируем по scp — через GitHub Releases.
-Сборка на сервере одна за раз (`pgrep -af "[s]oong_ui"`). Все команды adb/fastboot — только с `-s <серийник>`:
-на том же маке подключён OnePlus 10 Pro.
+## Installation
 
-## Документы
+The build is made on top of stock **Nothing OS B4.1-260814-1733** firmware. The firmware
+partitions (abl, xbl, tz, modem, dsp, …) are not in the zip, so both slots must carry B4.1
+firmware before installing — update stock Nothing OS to B4.1 first. An older firmware (e.g.
+V3.5) in either slot breaks radio, audio and keystore.
 
-- [meta/docs/decisions.md](meta/docs/decisions.md) — решения и их причины
-- [meta/docs/device-info.md](meta/docs/device-info.md) — инвентаризация телефона и стока
-- [meta/docs/porting-log.md](meta/docs/porting-log.md) — журнал проблем и исправлений
-- [meta/docs/flashing.md](meta/docs/flashing.md) — бэкап, обновление стока, прошивка
-- [meta/docs/test-matrix.md](meta/docs/test-matrix.md) — проверка железа
-- [meta/docs/logix727-lessons.md](meta/docs/logix727-lessons.md) — уроки чужого бринг-апа metroid
+1. Unlock the bootloader (wipes the phone).
+2. Make sure both slots run B4.1 firmware (update stock, or flash the B4.1 firmware images to
+   both slots, as the Nothing fastboot packages do).
+3. Flash the recovery from Releases: `fastboot flash recovery_a recovery.img` and
+   `fastboot flash recovery_b recovery.img`, then `fastboot reboot recovery`.
+4. In recovery: Factory reset → Format data, then Apply update → Apply from ADB and
+   `adb sideload lineage-23.2-*-metroid.zip` (join the `.partNN` pieces first:
+   `cat lineage-*.zip.part* > lineage.zip`, check with `shasum -a 256 -c SHA256SUMS`).
+5. Reboot.
+
+Updates: full zips through recovery as above; incremental zips only from the running system
+(on Virtual A/B, recovery refuses incremental sideloads).
+
+## Building
+
+- Sync LineageOS 23.2 and add [`meta/manifests/metroid.xml`](meta/manifests/metroid.xml) as a
+  local manifest (device tree plus the forks it needs).
+- Kernel: built from Nothing's GPL release with Kleaf, see [`meta/kernel/`](meta/kernel/)
+  (`build-kernel.sh`, then `stage-kernel.sh` into `kernel/out/`).
+- Proprietary files: `./extract-files.py <stock B4.1 OTA dump>` generates `vendor/nothing/metroid`.
+- Build: [`meta/scripts/build.sh`](meta/scripts/build.sh) (`VARIANT=user DEBUG=0` for release
+  builds); [`meta/scripts/check-needed.py`](meta/scripts/check-needed.py) and
+  [`check-symbols.py`](meta/scripts/check-symbols.py) verify that every stock blob finds its
+  libraries and symbols.
+
+## Credits
+
+LineageOS, Nothing (kernel sources and firmware), logix727 (original metroid bring-up), the
+OnePlus SM8450 LineageOS team (Doze), chenxiaolong (avbroot research).
+
+## License
+
+Apache License 2.0, see [LICENSE](LICENSE). Proprietary blobs belong to their owners and are
+not part of this repository.

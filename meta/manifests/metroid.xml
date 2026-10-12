@@ -19,7 +19,7 @@
   <remote name="fuad00-metroid" fetch="https://github.com/fuad00" />
 
   <!-- Device (this monorepo: the tree is the repository root, docs and scripts are in meta/) -->
-  <project path="device/nothing/metroid" name="nothing_phone_3_lineage" remote="fuad00-metroid" revision="main" />
+  <project path="device/nothing/metroid" name="android_device_nothing_metroid" remote="fuad00-metroid" revision="main" />
 
   <!-- Platform forks -->
   <remove-project name="LineageOS/android_build" path="build/make" />
