@@ -143,4 +143,10 @@
     <!-- Tap to wake: MetroidDoze turns the touch driver's gesture mode on and off with the
          setting (Settings > Display > Tap to wake) -->
     <bool name="config_supportDoubleTapWake">true</bool>
+
+    <!-- Tap on the sleeping screen pulses the ambient display (sensors.nothing single tap
+         sensor, fed by the touch driver's single tap gesture) -->
+    <string name="config_dozeTapSensorType" translatable="false">org.lineageos.sensor.single_touch</string>
+    <!-- Touching the fingerprint area while dozing (sensors.nothing UDFPS sensor) -->
+    <string name="config_dozeUdfpsLongPressSensorType" translatable="false">org.lineageos.sensor.udfps</string>
 </resources>

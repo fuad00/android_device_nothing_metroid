@@ -425,6 +425,15 @@ PRODUCT_PACKAGES += MetroidKeyHandler
 # detector. Stock has no pickup-gesture sensor and its tap sensor type exists on no stock HAL.
 PRODUCT_PACKAGES += MetroidDoze
 
+# Sensors: the LineageOS-style multihal (from Neoteric-OS) loads the stock QSH and dynamic
+# sensor sub-HALs and adds sensors.nothing: a single tap sensor (tap on the sleeping screen shows
+# the ambient display) and a UDFPS long press sensor, both read from the touch driver
+PRODUCT_PACKAGES += \
+    android.hardware.sensors-service.nothing-multihal \
+    sensors.nothing
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
+
 # Install incremental OTAs from the running system (meta/scripts/ota-apply.sh)
 PRODUCT_PACKAGES_DEBUG += update_engine_client
 PRODUCT_COPY_FILES += \

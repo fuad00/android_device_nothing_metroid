@@ -44,3 +44,5 @@ genfscon proc /sys/walt u:object_r:proc_walt:s0
 # for /devices/virtual/block.
 genfscon sysfs /devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:0/block u:object_r:sysfs_devices_block:s0
 genfscon sysfs /devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a90000.spi/spi_master/spi4/spi4.0/fts_gesture_mode u:object_r:sysfs_tap_to_wake:s0
+genfscon sysfs /devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a90000.spi/spi_master/spi4/spi4.0/fts_gesture_fod_pressed u:object_r:vendor_sysfs_sensors:s0
+genfscon sysfs /devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a90000.spi/spi_master/spi4/spi4.0/fts_gesture_single_tap_pressed u:object_r:vendor_sysfs_sensors:s0

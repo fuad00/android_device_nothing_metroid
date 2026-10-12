@@ -45,11 +45,6 @@ PRODUCT_COPY_FILES += \
     vendor/nothing/metroid/proprietary/vendor/firmware/wlan/qca_cld/wcn7750/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/wcn7750/WCNSS_qcom_cfg.ini \
     vendor/nothing/metroid/proprietary/vendor/lib64/libwifi-hal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libwifi-hal.so \
 
-# sensors: STOCK multihal rc (our packaged rc had `disabled` added during bring-up; with
-# ISensors now declared in VINTF, a non-started multihal = system_server watchdog boot-block).
-PRODUCT_COPY_FILES += \
-    vendor/nothing/metroid/proprietary/vendor/etc/init/android.hardware.sensors-service-multihal.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.sensors-service-multihal.rc
-
 # bluetooth: STOCK BT HAL rc (packaged rc had bring-up `disabled` -> IBluetoothHci declared
 # but never served -> BT stack stuck BLE_TURNING_ON->OFF). Verified live: BT state ON w/ address.
 PRODUCT_COPY_FILES += \
@@ -77,7 +72,6 @@ PRODUCT_COPY_FILES += \
     vendor/nothing/metroid/proprietary/vendor/bin/cnss_diag:$(TARGET_COPY_OUT_VENDOR)/bin/cnss_diag \
     vendor/nothing/metroid/proprietary/vendor/bin/hw/android.hardware.security.keymint-service-spu-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.security.keymint-service-spu-qti \
     vendor/nothing/metroid/proprietary/vendor/bin/hw/android.hardware.security.keymint-service.strongbox-thales:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.security.keymint-service.strongbox-thales \
-    vendor/nothing/metroid/proprietary/vendor/bin/hw/android.hardware.sensors-service.multihal:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.sensors-service.multihal \
     vendor/nothing/metroid/proprietary/vendor/bin/hw/vendor.noth.hardware.charge-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.noth.hardware.charge-service \
     vendor/nothing/metroid/proprietary/vendor/bin/hw/vendor.qti.hardware.memtrack-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.memtrack-service \
     vendor/nothing/metroid/proprietary/vendor/bin/nt_ddr_test:$(TARGET_COPY_OUT_VENDOR)/bin/nt_ddr_test \
