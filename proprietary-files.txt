@@ -143,8 +143,6 @@ system_ext/etc/seccomp_policy/qcrosvm.policy
 system_ext/etc/seccomp_policy/sxraux-arm.policy
 system_ext/etc/seccomp_policy/tcmd.policy
 system_ext/etc/seccomp_policy/wfdservice64.policy
-system_ext/etc/security/fsverity/BuildManifestSystemExt.apk
-system_ext/etc/security/fsverity/BuildManifestSystemExt.apk.idsig
 system_ext/etc/sltntc/sltntc_SM7325.conf
 system_ext/etc/sltntc/sltntc_SM7635.conf
 system_ext/etc/sltntc/sltntc_SM8475.conf
